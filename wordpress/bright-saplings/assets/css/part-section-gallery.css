@@ -1,0 +1,56 @@
+/* ==========================================================
+   SECTION: GALLERY — cream ground
+   HTML: src/sections/08-gallery.html
+
+   A wall of taped prints at varied angles and sizes, not a
+   uniform tile grid. The unevenness is the design.
+   ========================================================== */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 26px 20px;
+}
+
+.gallery .frame {
+  padding: 9px 9px 38px;
+  box-shadow: 0 6px 16px rgba(51,37,28,.10), 0 20px 44px rgba(51,37,28,.12);
+}
+.gallery .frame figcaption { font-size: .84rem; bottom: 12px; }
+
+.gallery > *:nth-child(1) .frame { --rot: -2.4deg; }
+.gallery > *:nth-child(2) .frame { --rot:  1.9deg; }
+.gallery > *:nth-child(3) .frame { --rot:  1.2deg; }
+.gallery > *:nth-child(4) .frame { --rot: -1.6deg; }
+.gallery > *:nth-child(5) .frame { --rot:  2.3deg; }
+.gallery > *:nth-child(6) .frame { --rot: -1.1deg; }
+
+.gallery .frame:hover {
+  transform: rotate(0deg) scale(1.02);
+  z-index: 5;
+  position: relative;
+}
+
+.gallery__note {
+  margin: 34px 0 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-variation-settings: var(--wonk);
+  font-style: italic;
+  font-size: 1.06rem;
+  color: var(--muted);
+}
+
+@media (min-width: 620px) {
+  .gallery { grid-template-columns: repeat(3, 1fr); gap: 34px 26px; }
+  /* stagger the rows so it reads as a wall, not a spreadsheet */
+  .gallery > *:nth-child(2) { margin-top: 30px; }
+  .gallery > *:nth-child(4) { margin-top: -14px; }
+  .gallery > *:nth-child(6) { margin-top: 22px; }
+}
+
+@media (min-width: 900px) {
+  .gallery { gap: 40px 32px; }
+  .gallery > *:nth-child(2) { margin-top: 44px; }
+  .gallery > *:nth-child(5) { margin-top: 20px; }
+}

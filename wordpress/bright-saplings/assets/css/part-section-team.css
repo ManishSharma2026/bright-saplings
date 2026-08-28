@@ -1,0 +1,84 @@
+/* ==========================================================
+   SECTION: TEAM — page ground
+   HTML: src/sections/07-team.html
+
+   Staff are photographs in frames on a wall, not profile cards
+   in a grid. Each one hangs at its own angle.
+   ========================================================== */
+
+.team { display: grid; gap: 40px; }
+
+.staff { position: relative; }
+.staff:nth-child(1) .frame { --rot: -2.2deg; }
+.staff:nth-child(2) .frame { --rot:  1.7deg; }
+.staff:nth-child(3) .frame { --rot: -1.2deg; }
+
+.staff__name {
+  font-size: 1.42rem;
+  margin: 20px 0 2px;
+}
+.staff__role {
+  font-size: .82rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--peach-text);
+  margin-bottom: .9em;
+}
+.staff p {
+  font-size: .93rem;
+  color: var(--muted);
+  margin-bottom: 0;
+}
+
+.staff__years {
+  position: absolute;
+  top: -14px;
+  left: -10px;
+  z-index: 4;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
+  padding: 6px 13px;
+  border-radius: var(--r-pill);
+  background: var(--blush);
+  color: var(--ink);
+  border: 2px solid var(--ink);
+  box-shadow: 2px 2px 0 var(--ink);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .04em;
+  text-transform: uppercase;
+  transform: rotate(-6deg);
+}
+.staff__years b {
+  font-family: var(--font-display);
+  font-variation-settings: var(--wonk);
+  font-size: 1.02rem;
+}
+
+.staff__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 2px dotted var(--line-2);
+}
+.staff__tags li {
+  font-size: .72rem;
+  font-weight: 700;
+  padding: 4px 10px;
+  border: 1.5px solid var(--line-2);
+  border-radius: var(--r-pill);
+  color: var(--muted);
+}
+
+@media (min-width: 620px) {
+  .team { grid-template-columns: repeat(2, 1fr); gap: 44px 30px; }
+}
+
+@media (min-width: 900px) {
+  .team { grid-template-columns: repeat(3, 1fr); gap: 40px; }
+  /* let the middle one hang a little lower, like a real wall */
+  .staff:nth-child(2) { margin-top: 34px; }
+}

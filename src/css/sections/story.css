@@ -1,0 +1,147 @@
+/* ==========================================================
+   SECTION: OUR STORY — pale sage ground
+
+   The only section on the page laid out as a column of prose.
+   That is deliberate: everything else is cards and grids, so a
+   run of plain paragraphs with a rule down the side reads as
+   somebody talking rather than somebody marketing.
+   ========================================================== */
+
+.story__grid { display: grid; gap: var(--s-7); }
+
+/* ---- Left column: a small pile of photographs --------------
+   Two frames, overlapped and counter-rotated, so the column
+   reads as things put down on a table rather than an image
+   grid. The second sits under and right of the first. */
+.story__media { position: relative; }
+.story__media .frame + .frame {
+  width: 58%;
+  /* Sits BELOW the first frame, nudged right and slightly off the
+     grid. It used to be pulled up 46px, which put it straight
+     through the first photo's caption. */
+  margin: var(--s-3) -12px 0 auto;
+  position: relative; z-index: 2;
+}
+.story__media .frame:first-child { position: relative; z-index: 1 }
+.story__media .frame img { display: block }
+
+.story__card {
+  position: relative;
+  /* Sits below the pile, pulled left so it doesn't line up with
+     the photo edges — nothing on this page is flush with anything. */
+  margin: var(--s-5) auto 0 0;
+  width: max-content; max-width: 100%;
+  display: grid; gap: var(--s-1);
+  padding: var(--s-4) var(--s-5);
+  background: var(--tang);
+  color: var(--green-deep);
+  border: 2px solid var(--green-deep);
+  border-radius: var(--r-md);
+  box-shadow: var(--hard);
+  transform: rotate(1.6deg);
+  z-index: 3;
+}
+.story__card-label {
+  font-size: .72rem; font-weight: 700;
+  letter-spacing: .18em; text-transform: uppercase;
+  /* No opacity here. At 10px on orange, .8 dropped it to 4.17:1
+     and the audit caught it — small text has the least margin. */
+  color: var(--green-deep);
+}
+.story__card strong {
+  font-family: var(--font-display); font-variation-settings: var(--wonk);
+  font-size: 1.3rem; font-weight: 700; letter-spacing: -.02em;
+  line-height: 1.1;
+}
+.story__card span:last-child { font-size: .84rem; line-height: 1.35 }
+
+/* ---- Right column: the story itself ----------------------- */
+.story__copy > p { max-width: 58ch; }
+.story__copy .lede { margin-bottom: var(--s-6); }
+.story__copy .lede b { font-weight: 700; color: var(--ink); }
+
+/* Each beat hangs off a continuous rule. The rule is drawn on
+   the beat, not the container, so it can't dangle past the last
+   paragraph the way a container ::before does. */
+.story__beats { display: grid; gap: 0; margin-bottom: var(--s-7); }
+
+.beat {
+  position: relative;
+  display: grid;
+  grid-template-columns: 42px 1fr;
+  gap: var(--s-4);
+  padding-block: var(--s-4);
+  background-image: linear-gradient(var(--line-2), var(--line-2));
+  background-size: 2px 100%;
+  background-position: 20px 0;
+  background-repeat: no-repeat;
+}
+.beat:first-child { background-position: 20px 26px; background-size: 2px calc(100% - 26px) }
+.beat:last-child  { background-size: 2px 30px }
+
+.beat__mark {
+  position: relative; z-index: 2;
+  width: 42px; height: 42px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--green-deep);
+  color: var(--sapling);
+  box-shadow: 3px 3px 0 var(--green-deep);
+}
+.beat__mark svg { width: 19px; height: 19px }
+
+/* The mark is column 1; the heading AND the paragraph both belong in
+   column 2. Without this the paragraph lands in column 1 on row 2 —
+   42px wide — and sets one word per line. */
+.beat > h3, .beat > p { grid-column: 2 }
+.beat h3 {
+  font-size: 1.08rem; font-weight: 700; letter-spacing: -.015em;
+  color: var(--ink); margin: var(--s-2) 0 var(--s-1);
+}
+.beat p { margin: 0; color: var(--ink-2); max-width: 54ch }
+.beat p b { font-weight: 700; color: var(--ink) }
+.beat p em { font-style: italic; font-weight: 600; color: var(--ink) }
+
+/* ---- The pull quote ---------------------------------------
+   The one place on the page where Fraunces goes big and soft. */
+.story__quote {
+  position: relative;
+  margin: var(--s-1) 0 var(--s-6);
+  padding: var(--s-6) var(--s-6) var(--s-5) var(--s-6);
+  background: var(--surface);
+  border: 2px solid var(--green-deep);
+  border-radius: var(--r-lg);
+  box-shadow: var(--hard-lg);
+  transform: rotate(-.7deg);
+}
+.story__quote::before {
+  content: "\201C";
+  position: absolute; top: -22px; left: 18px;
+  font-family: var(--font-display); font-variation-settings: var(--wonk);
+  font-size: 5rem; line-height: 1; font-weight: 700;
+  color: var(--tang);
+  -webkit-text-stroke: 2px var(--green-deep);
+  pointer-events: none;
+}
+.story__quote p {
+  margin: 0 0 var(--s-3);
+  font-family: var(--font-display); font-variation-settings: var(--wonk);
+  font-size: clamp(1.16rem, 1.05rem + .55vw, 1.5rem);
+  font-weight: 500; line-height: 1.42; letter-spacing: -.015em;
+  color: var(--ink); text-wrap: pretty;
+  max-width: 40ch;
+}
+.story__quote cite {
+  font-family: var(--font-body); font-style: normal;
+  font-size: .8rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted);
+}
+.story__quote cite::before { content: "— " }
+
+@media (min-width: 900px) {
+  .story__grid { grid-template-columns: .82fr 1.18fr; gap: var(--s-8); align-items: start }
+  .story__media { position: sticky; top: calc(var(--header-h) + 28px) }
+  .story .head { margin-bottom: 50px }
+}

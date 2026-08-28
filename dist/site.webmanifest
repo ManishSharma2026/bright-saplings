@@ -1,0 +1,13 @@
+{
+  "name": "Bright Saplings Daycare",
+  "short_name": "Bright Saplings",
+  "description": "In-home childcare in Bothell, WA for children 18 months to 5 years.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fdfbf0",
+  "theme_color": "#4b5a2a",
+  "icons": [
+    { "src": "images/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "images/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" }
+  ]
+}

@@ -1,0 +1,68 @@
+/* ==========================================================
+   SECTION: FOOTER — deep bark ground
+   ========================================================== */
+
+.site-footer {
+  position: relative;
+  background: var(--bark-deep);
+  color: rgba(255, 253, 243, .78);
+  padding-top: var(--s-8);
+  overflow: hidden;
+}
+.site-footer::before {
+  content: ""; position: absolute;
+  top: -180px; left: 6%;
+  width: 620px; aspect-ratio: 1;
+  background: radial-gradient(closest-side, rgba(99,114,52,.55), transparent 70%);
+  pointer-events: none;
+}
+.footer__inner { position: relative; display: grid; gap: var(--s-7); padding-bottom: 42px }
+
+.brand--footer { color: var(--cream); margin-bottom: 18px }
+/* The full badge, big enough to read. At 92px its wordmark was mush and
+   it sat next to a text lockup saying the same words — so the text went
+   and the badge grew. It is the logo doing the job it was drawn for. */
+.brand--footer { display: block; align-items: flex-start }
+.brand--footer .brand__logo {
+  width: 132px; height: 132px; flex: 0 0 132px;
+  border: 0; border-radius: 50%;
+  transition: transform var(--med);
+}
+.brand--footer:hover .brand__logo { transform: rotate(-4deg) scale(1.04) }
+.footer__brand p { font-size: .92rem; max-width: 34ch }
+
+.footer__nav { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px }
+.footer__nav h4 {
+  font-family: var(--font-body);
+  font-size: .74rem; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase;
+  color: var(--sun); margin-bottom: var(--s-3);
+  padding-bottom: var(--s-3); border-bottom: 2px dotted rgba(255,253,243,.32);
+}
+.footer__nav li { font-size: .93rem }
+/* Footer links were 21px tall and stacked 8px apart — on a phone that
+   is four links inside one thumb. Padding gives each its own area. */
+.footer__nav a { display: inline-block; padding-block: var(--s-2) }
+.footer__nav a, .footer__nav span { color: rgba(255,253,243,.86) }
+.footer__nav a:hover { color: var(--sun) }
+
+.footer__bottom {
+  position: relative;
+  display: flex; flex-direction: column; gap: var(--s-1);
+  padding-block: var(--s-5);
+  border-top: 2px dotted rgba(255,253,243,.32);
+  font-size: .8rem;
+}
+.footer__bottom p { margin: 0; color: rgba(255,253,243,.72) }
+.footer__bottom a {
+  color: rgba(255,253,243,.86);
+  /* .8rem text, so the 10px in base only reached 35px. */
+  padding-block: 14px;
+}
+.footer__bottom a:hover { color: var(--sun) }
+
+@media (min-width: 620px) { .footer__bottom { flex-direction: row; justify-content: space-between } }
+@media (min-width: 900px) {
+  .footer__inner { grid-template-columns: 1.1fr 1.4fr; gap: 60px }
+  .footer__nav { grid-template-columns: repeat(3, 1fr) }
+}

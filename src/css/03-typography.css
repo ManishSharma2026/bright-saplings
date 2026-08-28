@@ -1,0 +1,159 @@
+/* ==========================================================
+   TYPOGRAPHY & THE HAND-DRAWN MARKS
+   The marks are real SVG paths that draw themselves on, not
+   border-bottoms pretending to be drawings.
+   ========================================================== */
+
+.lede {
+  font-size: clamp(1.06rem, 1rem + .4vw, 1.24rem);
+  line-height: 1.58;
+  color: var(--ink-2);
+  margin-bottom: 1em;
+  text-wrap: pretty;
+}
+.section--sapling .lede { color: rgba(255, 253, 243, .94); }
+
+/* ---- Drawn underline --------------------------------------- */
+.u { position: relative; white-space: nowrap; }
+.u svg {
+  position: absolute;
+  left: -2%; bottom: -.12em;
+  width: 104%; height: .2em;
+  overflow: visible;
+}
+.u path {
+  stroke: var(--olive);
+  stroke-width: 9;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 220;
+  stroke-dashoffset: 220;
+  transition: stroke-dashoffset 1s var(--ease-out) .35s;
+}
+.is-visible .u path { stroke-dashoffset: 0; }
+.u--peach path { stroke: var(--peach); }
+.u--sun path { stroke: var(--sun); }
+
+/* ---- Little arrow beside a call to action ------------------ */
+.aside-note {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  font-size: .93rem;
+  color: var(--muted);
+}
+.aside-note svg { width: 54px; height: 27px; overflow: visible; flex: 0 0 54px; }
+.aside-note path { stroke: currentColor; stroke-width: 2; fill: none; stroke-linecap: round; opacity: .6; }
+.hero .aside-note { color: var(--muted); }
+
+/* ---- Sticker label ----------------------------------------- */
+.sticker {
+  display: inline-block;
+  padding: var(--s-1) var(--s-4);
+  margin-bottom: var(--s-4);
+  border-radius: var(--r-pill);
+  background: var(--sage-text);
+  color: var(--cream);
+  font-size: .8rem;
+  font-weight: 700;
+  transform: rotate(-2deg);
+}
+.sticker--peach { background: var(--peach-text); }
+.sticker--sun   { background: var(--sun); color: var(--ink); }
+.sticker--blush { background: var(--blush); color: var(--ink); }
+/* light orange sticker — needs the deep-green label, 6.2:1 */
+.sticker--tang  { background: var(--tang); color: var(--green-deep);
+                  border: 2px solid var(--green-deep); padding: var(--s-1) var(--s-3); }
+.section--sapling .sticker { background: var(--sun); color: var(--ink); }
+
+/* ---- Tag pill ---------------------------------------------- */
+.tag {
+  display: inline-block;
+  padding: var(--s-1) var(--s-3);
+  border-radius: var(--r-pill);
+  background: var(--sun);
+  color: var(--ink);
+  font-size: .76rem;
+  font-weight: 700;
+}
+
+/* ---- Wax-seal stamp ---------------------------------------- */
+.stamp {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  width: 126px; height: 126px;
+  border-radius: 50%;
+  background: var(--cream);
+  color: var(--sage-text);
+  border: 2px dashed var(--olive);
+  box-shadow: 0 8px 26px rgba(47,59,24,.18);
+  transform: rotate(-11deg);
+}
+.stamp b {
+  display: block;
+  font-family: var(--font-display);
+  font-variation-settings: var(--wonk);
+  font-weight: 700;
+  font-size: 1.55rem;
+  line-height: .95;
+}
+.stamp span {
+  display: block;
+  margin-top: var(--s-1);
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+/* ---- Lists -------------------------------------------------- */
+.check-list li, .mini-list li {
+  position: relative;
+  padding-left: var(--s-6);
+  margin-bottom: var(--s-2);
+  color: var(--ink-2);
+}
+.check-list li::before, .mini-list li::before {
+  content: "";
+  position: absolute;
+  left: 1px; top: .48em;
+  width: 13px; height: 7px;
+  border-left: 2px solid var(--sage-text);
+  border-bottom: 2px solid var(--sage-text);
+  transform: rotate(-45deg);
+}
+.check-list { margin: var(--s-5) 0 var(--s-6); }
+.check-list--sm li { font-size: .93rem; margin-bottom: var(--s-2); }
+.mini-list li { font-size: .89rem; color: var(--muted); margin-bottom: var(--s-2); padding-left: var(--s-5); }
+.mini-list li::before { border-color: var(--peach-text); width: 11px; height: 6px; }
+
+.section--sapling .check-list li { color: rgba(255,253,243,.94); }
+.section--sapling .check-list li::before { border-color: var(--sun); }
+
+/* ---- Link with a drawn underline ---------------------------- */
+.link-arrow {
+  /* Vertical padding so the tap area clears 44px. The underline is
+     drawn on a pseudo-element, so padding here does not push it away
+     from the text. */
+  padding-block: var(--s-3);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--s-2);
+  padding-bottom: var(--s-1);
+  font-weight: 700;
+  color: var(--ink);
+  border-bottom: 2px solid var(--peach);
+  transition: gap var(--fast), border-color var(--fast);
+}
+.link-arrow:hover { gap: var(--s-3); border-bottom-color: var(--ink); }
+.link-arrow svg { width: 16px; height: 16px; }
+
+.note-line {
+  font-family: var(--font-display);
+  font-variation-settings: var(--wonk);
+  font-style: italic;
+  font-size: 1.06rem;
+  color: var(--muted);
+}

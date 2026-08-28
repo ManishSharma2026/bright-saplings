@@ -1,0 +1,101 @@
+/* ==========================================================
+   SECTION: OUR DAY — blush ground
+   HTML: src/sections/05-schedule.html
+
+   The timetable is presented as a sheet of paper pinned to the
+   wall: a cream card, slightly rotated, with dotted leader lines
+   between the time and what happens. It reads like something
+   actually posted by the door, which is the point.
+   ========================================================== */
+
+.day { position: relative; }
+
+.day__sheet {
+  position: relative;
+  max-width: 940px;
+  margin-inline: auto;
+  padding: 34px 24px 30px;
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  border-radius: var(--r-lg);
+  box-shadow: var(--hard-lg);
+  transform: rotate(-.7deg);
+}
+
+/* two pins at the top corners */
+.day__sheet::before,
+.day__sheet::after {
+  content: "";
+  position: absolute;
+  top: 15px;
+  width: 15px; height: 15px;
+  border-radius: 50%;
+  background: var(--peach);
+  border: 2px solid var(--ink);
+}
+.day__sheet::before { left: 18px; }
+.day__sheet::after  { right: 18px; }
+
+.day__sheet-title {
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-family: var(--font-body);
+  color: var(--peach-text);
+  padding-bottom: 18px;
+  margin-bottom: 6px;
+  border-bottom: 3px solid var(--ink);
+}
+
+.timeline { counter-reset: hour; }
+
+.timeline__item {
+  display: grid;
+  gap: 1px 16px;
+  padding: 14px 4px;
+  border-bottom: 2px dotted var(--line-2);
+  transition: background var(--fast);
+}
+.timeline__item:last-child { border-bottom: 0; }
+.timeline__item:hover { background: var(--blush-soft); }
+
+.timeline__time {
+  font-weight: 700;
+  font-size: .92rem;
+  color: var(--sage-text);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.timeline__body h3 {
+  font-size: 1.14rem;
+  letter-spacing: -.018em;
+  margin: 0 0 3px;
+}
+.timeline__body p {
+  font-size: .9rem;
+  color: var(--muted);
+  margin: 0;
+}
+
+.day__note {
+  max-width: 940px;
+  margin: 30px auto 0;
+  text-align: center;
+  font-family: var(--font-display);
+  font-variation-settings: var(--wonk);
+  font-style: italic;
+  font-size: 1.06rem;
+  color: var(--ink-2);
+}
+
+@media (min-width: 620px) {
+  .day__sheet { padding: 40px 40px 34px; }
+  .timeline__item { grid-template-columns: 124px 1fr; padding-block: 15px; }
+}
+
+@media (min-width: 900px) {
+  .day__sheet { padding: 46px 56px 40px; }
+}

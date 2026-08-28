@@ -1,0 +1,32 @@
+/* ==========================================================
+   SECTION: LOCATION — blush ground
+   ========================================================== */
+
+.location { display: grid; gap: var(--s-7); align-items: center; }
+
+.loc-facts { margin: var(--s-6) 0 0; }
+.loc-facts li {
+  display: grid; grid-template-columns: 96px 1fr;
+  gap: var(--s-1) var(--s-3); padding: var(--s-4) 0;
+  border-bottom: 2px dotted rgba(47,59,24,.34);
+}
+.loc-facts li:first-child { border-top: 2px dotted rgba(47,59,24,.34) }
+.loc-facts dt, .loc-facts .lbl {
+  font-size: .7rem; font-weight: 700;
+  letter-spacing: .13em; text-transform: uppercase;
+  color: var(--ink-2); padding-top: .3em;
+}
+.loc-facts .val { font-size: 1.04rem; color: var(--ink); font-weight: 700; }
+.loc-facts .val a { color: var(--ink); border-bottom: 2px solid rgba(47,59,24,.42) }
+.loc-facts .val a:hover { color: var(--peach-text); border-bottom-color: var(--peach-text) }
+.loc-facts em {
+  display: block; margin-top: var(--s-1);
+  font-size: .84rem; font-style: normal; font-weight: 400;
+  color: var(--ink-2);
+}
+
+.location .frame { --rot: 1.6deg; }
+
+@media (min-width: 900px) {
+  .location { grid-template-columns: 1fr 1fr; gap: 64px }
+}

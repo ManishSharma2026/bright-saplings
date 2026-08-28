@@ -1,0 +1,7 @@
+# Bright Saplings Daycare
+# EDIT ME: swap in your real domain before going live.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://www.brightsaplings.com/sitemap.xml

@@ -1,0 +1,17 @@
+# ---- Generated. Rebuilt by build.py / make-dist.py on demand ----
+# dist/ is deliberately NOT ignored: GitHub Pages needs it, and having it
+# in the repo means the live site and the source can never drift apart.
+__pycache__/
+*.pyc
+
+# ---- Junk ----
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+.idea/
+.vscode/
+
+# ---- Working folders, not part of the site ----
+_to_delete/
+_directions/

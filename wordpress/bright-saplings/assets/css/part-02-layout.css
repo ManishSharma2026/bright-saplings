@@ -1,0 +1,74 @@
+/* ==========================================================
+   LAYOUT & SECTION GROUNDS
+
+   Sections do not all look alike. The page runs
+   yellow → yellow → sage → oat → yellow → blush → oat → green
+   so scrolling feels like turning pages. Only the last two are
+   dark, and they are dark on purpose: the page warms up all the
+   way down and then closes on deep green.
+   ========================================================== */
+
+.wrap {
+  width: 100%;
+  max-width: var(--wrap);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.section { position: relative; padding-block: var(--sec-y); }
+
+.section--oat   { background: var(--oat); }
+.section--blush { background: var(--blush); }
+.section--sage  { background: var(--sage); }
+
+/* The one dark ground left. Cream on it is 11.7:1. */
+.section--sapling {
+  background: var(--green-deep);
+  color: rgba(255, 253, 243, .9);
+}
+.section--sapling h2,
+.section--sapling h3,
+.section--sapling strong { color: var(--on-dark); }
+
+/* blush and oat are light enough that --muted stops clearing AA */
+.section--blush .head p,
+.section--blush .note-line,
+.section--oat .note-line { color: var(--ink-2); }
+
+/* ---- The soft edge between a colour band and the page ------ */
+.edge {
+  position: absolute;
+  left: -3%; right: -3%;
+  height: 52px;
+  z-index: 3;
+  pointer-events: none;
+  transform: scaleX(1.35);
+}
+.edge--bottom { bottom: -1px; border-radius: 50% 50% 0 0 / 100% 100% 0 0; }
+.edge--top    { top: -1px;    border-radius: 0 0 50% 50% / 0 0 100% 100%; }
+.edge--cream  { background: var(--page); }
+.edge--oat    { background: var(--oat); }
+.edge--sage   { background: var(--sage); }
+.edge--blush  { background: var(--blush); }
+
+/* ---- Section headings -------------------------------------
+   Two variants only, and nothing gets a number. */
+.head { margin-bottom: var(--s-7); }
+.head--centred { max-width: 660px; margin-inline: auto; text-align: center; }
+.head--wide { max-width: 800px; }
+
+.head h2 {
+  font-size: clamp(2rem, 1.35rem + 2.7vw, 3.25rem);
+  margin-bottom: .34em;
+  text-wrap: balance;
+}
+.head p {
+  font-size: clamp(1.02rem, .98rem + .3vw, 1.16rem);
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+  text-wrap: pretty;
+}
+.section--sapling .head p { color: rgba(255, 253, 243, .88); }
+
+@media (min-width: 860px) { .head { margin-bottom: var(--s-8); } }

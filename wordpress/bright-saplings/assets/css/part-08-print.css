@@ -1,0 +1,83 @@
+/* ==========================================================
+   PRINT
+   The menu is the reason this file exists. "Download / print"
+   in the Food section calls window.print(), and every browser
+   offers "Save as PDF" from there — so a parent gets a clean
+   one-page menu for the fridge with no plugin and no download
+   library. Everything else on the page is hidden.
+   ========================================================== */
+
+@media print {
+  @page { size: A4 portrait; margin: 11mm 11mm; }
+
+  html, body { background: #fff !important; color: #000; font-size: 10pt; }
+  .grain, .site-header, .nav-scrim, .skip-link,
+  .hero, .trust, .site-footer, .menu__bar, .menu__now,
+  .section:not(#food), .food__extras, .food__note, .edge,
+  .sticker { display: none !important; }
+
+  /* strip every screen flourish */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+    text-shadow: none !important;
+  }
+
+  #food { padding: 0 !important; background: #fff !important; }
+  #food .wrap { max-width: none; padding: 0; }
+
+  /* the card chrome is a screen idea; on paper it just wastes margin */
+  .menu { border: 0 !important; border-radius: 0 !important; overflow: visible !important; }
+  .menu__body { padding: 0 !important; }
+
+  /* CRITICAL: on screen the table scrolls sideways inside .menu__scroll.
+     There is no sideways on paper, so the scroller has to be dissolved
+     and the table told to fit the page — otherwise Friday is guillotined. */
+  .menu__scroll { overflow: visible !important; }
+  .menu__table {
+    min-width: 0 !important;
+    width: 100% !important;
+    table-layout: fixed !important;
+  }
+  .menu__table th[scope="col"], .menu__table td { width: auto; }
+  .menu__month { display: block !important; gap: 0 !important; }
+  #food .head { text-align: left; max-width: none; margin-bottom: 4mm; }
+  #food .head .sticker { display: none; }
+  #food .head h2 { font-size: 17pt; margin-bottom: 1.5mm; }
+  #food .head p { font-size: 8.5pt; color: #333; }
+
+  /* a proper printed masthead */
+  .print-head { display: block !important; margin-bottom: 4mm; padding-bottom: 2.5mm; border-bottom: 1.5pt solid #000; }
+  .print-head b { font-size: 13pt; }
+  .print-head span { float: right; font-size: 9pt; }
+
+  /* all four weeks, always, whatever the screen was showing */
+  .menu__week { display: none !important; }
+  .menu__month { display: block !important; }
+  .menu__wk { break-inside: avoid; page-break-inside: avoid; margin-bottom: 3.6mm; }
+  .menu__wk[hidden] { display: block !important; }
+
+  .menu__wk h3 { font-size: 10.5pt; margin-bottom: 1.5mm; padding-bottom: 1mm; }
+  table.menu__table { width: 100%; border-collapse: collapse; font-size: 7.6pt; }
+  .menu__table th, .menu__table td {
+    border: .5pt solid #999 !important;
+    padding: 1.2mm 1.6mm;
+    text-align: left;
+    vertical-align: top;
+    background: #fff !important;
+    color: #000 !important;
+  }
+  .menu__table thead th { background: #eee !important; font-weight: 700; }
+  .menu__table th[scope="row"] { width: 21mm; font-weight: 700; font-size: 6.6pt; letter-spacing: .04em; }
+  .menu__table td.is-today { background: #fff !important; }
+
+  .print-foot { display: block !important; margin-top: 3mm; font-size: 8pt; color: #333; border-top: .5pt solid #999; padding-top: 2mm; }
+
+  a[href]::after { content: ""; }
+}
+
+/* hidden on screen, shown on paper */
+.print-head, .print-foot { display: none; }

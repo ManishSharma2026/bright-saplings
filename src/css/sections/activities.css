@@ -1,0 +1,122 @@
+/* ==========================================================
+   SECTION: ACTIVITIES — oat ground
+   Three layers: the shape of a day, the shape of a week, and
+   the special weeks that break the pattern.
+   ========================================================== */
+
+/* ---- The daily rhythm, as a ribbon of stops ---------------- */
+.rhythm {
+  display: grid;
+  gap: var(--s-2);
+  margin-bottom: var(--s-8);
+}
+.rhythm li {
+  display: flex; align-items: center; gap: var(--s-3);
+  padding: var(--s-3) var(--s-4);
+  background: var(--surface);
+  border: 2px solid var(--line-2);
+  border-radius: var(--r-pill);
+  font-weight: 700; font-size: .95rem; color: var(--ink);
+}
+.rhythm li:nth-child(2n) { transform: rotate(.5deg) }
+.rhythm li:nth-child(2n+1) { transform: rotate(-.4deg) }
+.rhythm__dot {
+  width: 26px; height: 26px; flex: 0 0 26px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--sun);
+  border: 2px solid var(--bark-deep);
+  font-family: var(--font-display); font-variation-settings: var(--wonk);
+  font-size: .74rem; font-weight: 700; color: var(--ink);
+}
+.rhythm li:nth-child(3n) .rhythm__dot { background: var(--blush) }
+/* --olive is decoration-only: cream on it is 3.4:1. --sapling clears AA. */
+.rhythm li:nth-child(3n+1) .rhythm__dot { background: var(--sapling); color: var(--cream) }
+
+/* ---- Weekly themes: five day cards -------------------------- */
+.week-themes { display: grid; gap: var(--s-4); margin-bottom: var(--s-8); }
+
+.wtheme {
+  padding: var(--s-5) var(--s-5) var(--s-5);
+  background: var(--surface);
+  border: 2px solid var(--bark-deep);
+  border-radius: var(--r-lg);
+  box-shadow: var(--hard);
+}
+.wtheme:nth-child(5n+1) { transform: rotate(-1deg) }
+.wtheme:nth-child(5n+2) { transform: rotate(.7deg) }
+.wtheme:nth-child(5n+3) { transform: rotate(-.5deg) }
+.wtheme:nth-child(5n+4) { transform: rotate(.9deg) }
+.wtheme:nth-child(5n+5) { transform: rotate(-.7deg) }
+
+.wtheme__day {
+  font-size: .72rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: var(--s-1);
+}
+.wtheme h3 { font-size: 1.24rem; margin-bottom: .6em; }
+.wtheme ul li {
+  position: relative; padding-left: var(--s-4);
+  font-size: .88rem; color: var(--muted); margin-bottom: var(--s-1);
+}
+.wtheme ul li::before {
+  content: ""; position: absolute;
+  left: 0; top: .55em;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--olive);
+}
+
+/* ---- Monthly themes + special weeks ------------------------- */
+.season-grid { display: grid; gap: var(--s-4); margin-bottom: var(--s-7); }
+.season-card {
+  padding: var(--s-5);
+  border-radius: var(--r-lg);
+  border: 2px solid var(--bark-deep);
+  box-shadow: var(--hard);
+}
+.season-card:nth-child(1) { background: var(--blush-soft); transform: rotate(-.8deg) }
+.season-card:nth-child(2) { background: var(--sun);        transform: rotate(.6deg) }
+.season-card:nth-child(3) { background: var(--blush);      transform: rotate(-.5deg) }
+.season-card:nth-child(4) { background: var(--surface);    transform: rotate(.8deg) }
+.season-card h3 { font-size: 1.16rem; margin-bottom: .5em; }
+.season-card li {
+  font-size: .89rem; color: var(--ink-2);
+  padding: var(--s-1) 0; border-bottom: 1.5px dotted rgba(47,59,24,.24);
+}
+.season-card li:last-child { border-bottom: 0 }
+
+.special { display: flex; flex-wrap: wrap; gap: var(--s-2); }
+.special li {
+  padding: var(--s-2) var(--s-3);
+  font-size: .87rem; font-weight: 700; color: var(--ink);
+  background: var(--surface);
+  border: 2px solid var(--bark-deep);
+  border-radius: var(--r-pill);
+  box-shadow: 2px 2px 0 var(--bark-deep);
+  transition: transform var(--fast);
+}
+.special li:nth-child(4n+1) { transform: rotate(-1.2deg) }
+.special li:nth-child(4n+2) { transform: rotate(.8deg) }
+.special li:nth-child(4n+3) { transform: rotate(-.6deg) }
+.special li:nth-child(4n+4) { transform: rotate(1deg) }
+.special li:hover { transform: rotate(0) translateY(-2px) }
+
+.sub-head {
+  font-size: clamp(1.4rem, 1.1rem + 1.1vw, 1.9rem);
+  margin-bottom: .5em;
+}
+.sub-head + p { color: var(--muted); margin-bottom: var(--s-6); max-width: 60ch; }
+
+@media (min-width: 620px) {
+  .rhythm { grid-template-columns: repeat(2, 1fr) }
+  .week-themes { grid-template-columns: repeat(2, 1fr) }
+  .season-grid { grid-template-columns: repeat(2, 1fr) }
+}
+@media (min-width: 1000px) {
+  .rhythm { grid-template-columns: repeat(5, 1fr) }
+  .rhythm li { flex-direction: column; text-align: center; gap: var(--s-2); border-radius: var(--r-lg); padding: 16px 12px }
+  .week-themes { grid-template-columns: repeat(5, 1fr); gap: 14px }
+  .wtheme { padding: 18px 16px 20px }
+  .wtheme h3 { font-size: 1.1rem }
+  .season-grid { grid-template-columns: repeat(4, 1fr) }
+}

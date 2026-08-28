@@ -1,0 +1,18 @@
+/* ==========================================================
+   SECTION: PROGRAMS — two age groups
+   ========================================================== */
+
+.card--program { display: flex; flex-direction: column; }
+.card--program .card__body { display: flex; flex-direction: column; flex: 1; }
+.card--program h3 { font-size: 1.6rem; }
+.card--program .mini-list { margin-top: var(--s-3); }
+.card--program .card__foot { margin-top: auto; }
+
+.card--program .tag {
+  position: relative; z-index: 2;
+  margin-top: -30px; margin-bottom: var(--s-3);
+  align-self: flex-start;
+  border: 2px solid var(--bark-deep);
+  box-shadow: 2px 2px 0 var(--bark-deep);
+  transform: rotate(-1.6deg);
+}

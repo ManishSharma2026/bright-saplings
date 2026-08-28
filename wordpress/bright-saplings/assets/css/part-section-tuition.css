@@ -1,0 +1,104 @@
+/* ==========================================================
+   SECTION: TUITION — terracotta ground
+   HTML: src/sections/10-tuition.html
+   ========================================================== */
+
+.tuition { position: relative; }
+
+.tuition .cards { perspective: none; }
+
+.card--tier {
+  display: flex;
+  flex-direction: column;
+  padding: 28px 24px 26px;
+  background: var(--cream);
+}
+
+/* ---------------------------------------------------------------
+   These cards are light, but they sit inside a section whose text
+   is set to cream for the dark ground. Without this reset the card
+   contents inherit cream-on-cream and vanish entirely. Any light
+   card placed on a colour section needs the same treatment.
+   --------------------------------------------------------------- */
+.section--terracotta .card--tier,
+.section--terracotta .card--tier h3,
+.section--terracotta .card--tier strong { color: var(--ink); }
+
+.section--terracotta .card--tier .check-list li { color: var(--ink-2); }
+.section--terracotta .card--tier .check-list li::before { border-color: var(--peach-text); }
+
+.section--terracotta .card--tier .btn--ghost {
+  --btn-fg: var(--ink);
+  border-color: var(--line-2);
+}
+.section--terracotta .card--tier .btn--ghost:hover {
+  border-color: var(--ink);
+  background: rgba(51, 37, 28, .05);
+}
+
+.tier__head {
+  padding-bottom: 18px;
+  margin-bottom: 20px;
+  border-bottom: 2px dotted var(--line-2);
+}
+.card--tier h3 { font-size: 1.5rem; margin-bottom: .22em; }
+
+.tier__age {
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0;
+}
+
+.tier__price {
+  font-family: var(--font-display);
+  font-variation-settings: var(--wonk);
+  font-size: 1.32rem;
+  font-weight: 700;
+  letter-spacing: -.02em;
+  color: var(--peach-text);
+  margin: 15px 0 0;
+}
+.tier__price small {
+  display: block;
+  font-family: var(--font-body);
+  font-size: .74rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 5px;
+}
+
+.card--tier .check-list { margin: 0 0 24px; flex: 1; }
+
+/* the featured tier gets a real label, taped on */
+.card--featured { border-width: 3px; }
+.ribbon {
+  position: absolute;
+  top: -14px; left: 22px;
+  z-index: 3;
+  padding: 5px 14px;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--ink);
+  white-space: nowrap;
+  background: var(--blush);
+  border: 2px solid var(--ink);
+  border-radius: var(--r-pill);
+  box-shadow: 2px 2px 0 var(--ink);
+  transform: rotate(-3deg);
+}
+
+.tuition__note {
+  margin: 34px auto 0;
+  max-width: 66ch;
+  text-align: center;
+  font-size: .93rem;
+  color: rgba(243, 235, 219, .9);
+}
+.tuition__note strong { color: var(--on-dark); }

@@ -1,0 +1,88 @@
+/* ==========================================================
+   BUTTONS
+   Hard offset shadow, no blur. Pressing moves the button down
+   onto its own shadow. Primary is now LIGHT ORANGE — on a pale
+   yellow page it is the only warm-loud thing left, so the eye
+   goes straight to it. Green became the border and the label.
+   ========================================================== */
+
+.btn {
+  --btn-bg: var(--tang);
+  --btn-fg: var(--green-deep);
+  --btn-shadow: var(--green-deep);
+  --mx: 0px; --my: 0px;
+
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--s-2);
+  padding: var(--s-4) var(--s-6);
+  /* 44px is the smallest a touch target should be. Padding alone got
+     the small variant to 34px, which is a miss waiting to happen on a
+     phone — a parent tapping "Book a tour" one-handed on a bus. */
+  min-height: 44px;
+  border: 2px solid var(--bark-deep);
+  border-radius: var(--r-pill);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--btn-fg);
+  background: var(--btn-bg);
+  cursor: pointer;
+  box-shadow: 4px 4px 0 var(--btn-shadow);
+  transform: translate3d(var(--mx), var(--my), 0);
+  transition: transform var(--med), box-shadow var(--med),
+              background var(--fast), color var(--fast);
+}
+.btn:hover { color: var(--btn-fg); }
+.btn:active {
+  transform: translate3d(var(--mx), calc(var(--my) + 4px), 0);
+  box-shadow: 0 0 0 var(--btn-shadow);
+}
+
+/* The default. Light orange, deep-green label — 6.2:1. */
+.btn--tang { --btn-bg: var(--tang); --btn-fg: var(--green-deep); }
+.btn--tang:hover { --btn-bg: var(--tang-hi); }
+
+/* Kept so existing markup keeps working — now also orange, because
+   a green button on a yellow page competes with the green type. */
+.btn--green { --btn-bg: var(--tang); --btn-fg: var(--green-deep); }
+.btn--green:hover { --btn-bg: var(--tang-hi); }
+
+/* The quiet one: deep green ground, cream label. 11.7:1.
+   Used where an orange button would be the third orange thing. */
+.btn--peach { --btn-bg: var(--green-deep); --btn-fg: var(--cream); --btn-shadow: var(--bark); }
+.btn--peach:hover { --btn-bg: #3d4d21; }
+
+/* Sun is now nearly the page colour, so it stopped being a button
+   and became an outline instead. Aliased to keep old markup alive. */
+.btn--sun { --btn-bg: var(--tang); --btn-fg: var(--green-deep); --btn-shadow: var(--green-deep); }
+.btn--sun:hover { --btn-bg: var(--tang-hi); }
+
+.btn--cream { --btn-bg: var(--cream); --btn-fg: var(--sage-text); --btn-shadow: var(--green-deep); }
+.btn--cream:hover { --btn-bg: #fff; }
+
+.btn--ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--ink);
+  --btn-shadow: transparent;
+  border-color: var(--line-2);
+  box-shadow: none;
+}
+.btn--ghost:hover { border-color: var(--ink); background: rgba(47,59,24,.06); }
+
+.section--sapling .btn--ghost { --btn-fg: var(--on-dark); border-color: rgba(255,253,243,.45); }
+.section--sapling .btn--ghost:hover { border-color: var(--cream); background: rgba(255,253,243,.12); }
+
+.btn--sm {
+  padding: var(--s-3) var(--s-5);
+  min-height: 40px;
+  font-size: .88rem;
+  box-shadow: 3px 3px 0 var(--btn-shadow);
+}
+.btn--block { width: 100%; }
+
+.btn__icon { width: 16px; height: 16px; transition: transform var(--fast); }
+.btn:hover .btn__icon { transform: translateY(1px); }

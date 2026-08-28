@@ -1,0 +1,58 @@
+# Publishes the site to GitHub Pages on every push to main.
+#
+# It runs make-dist.py itself rather than trusting the dist/ folder that
+# happens to be committed, so the live site is always built from src/.
+# If someone edits src/ and forgets to rebuild before pushing, this still
+# deploys the right thing.
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:      # lets you redeploy by hand from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# If two pushes land close together, finish the first and then run the
+# second — never deploy them out of order.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Build the upload folder
+        run: python3 make-dist.py
+
+      - name: Check the build actually produced a page
+        run: |
+          test -f dist/index.html || { echo "dist/index.html missing"; exit 1; }
+          test -s dist/css/style.css || { echo "stylesheet empty"; exit 1; }
+          echo "dist/ contains $(find dist -type f | wc -l) files"
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

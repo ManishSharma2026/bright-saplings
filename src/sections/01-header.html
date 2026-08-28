@@ -1,0 +1,45 @@
+<!-- ============================================================
+     SECTION: Sticky Header
+     Needs: src/css/sections/header.css
+     ============================================================ -->
+<header class="site-header" id="siteHeader">
+  <div class="wrap header__inner">
+
+    <a class="brand" href="#top" aria-label="Bright Saplings Daycare, back to top">
+      <!-- The illustration cropped out of the real logo file — the sun, the
+           tree, both children — with its olive ring redrawn at this size.
+           Nothing here is a stand-in: it is Pooja's artwork.
+
+           The full badge doesn't work at 48px because the wordmark inside it
+           becomes unreadable, and the wordmark is already sitting right next
+           to this in real text. So the mark carries the picture and the text
+           carries the name. images/logo.png (the whole badge) is used where
+           it gets real size: the footer, the 404 page and the share card. -->
+      <img class="brand__logo" src="images/logo-mark.png" alt=""
+           width="256" height="256" fetchpriority="high">
+      <span class="brand__text">Bright Saplings<span class="brand__sub">Daycare</span></span>
+    </a>
+
+    <nav class="nav" id="primaryNav" aria-label="Primary">
+      <ul class="nav__list">
+        <li><a class="nav__link" href="#about">About</a></li>
+        <li><a class="nav__link" href="#story">Our story</a></li>
+        <li><a class="nav__link" href="#programs">Programs</a></li>
+        <li><a class="nav__link" href="#activities">Activities</a></li>
+        <li><a class="nav__link" href="#food">Food</a></li>
+        <li><a class="nav__link" href="#location">Location</a></li>
+      </ul>
+      <a class="btn btn--peach btn--sm nav__cta" data-magnetic href="#contact">Book a tour</a>
+    </nav>
+
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="primaryNav" aria-label="Open menu">
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+      <span class="nav-toggle__bar"></span>
+    </button>
+
+  </div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+</header>
+
+<div class="nav-scrim" id="navScrim" hidden></div>

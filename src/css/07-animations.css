@@ -1,0 +1,153 @@
+/* ==========================================================
+   MOTION — all of it switches off under prefers-reduced-motion
+   ========================================================== */
+
+.reveal {
+  opacity: 0;
+  transform: perspective(var(--persp)) translate3d(0, 24px, -30px) rotate(-.8deg);
+  transition: opacity .75s var(--ease-out), transform .85s var(--ease-out);
+  will-change: opacity, transform;
+}
+.reveal.is-visible { opacity: 1; transform: perspective(var(--persp)) translate3d(0,0,0) rotate(0deg); }
+.reveal--delay   { transition-delay: .08s; }
+.reveal--delay-2 { transition-delay: .16s; }
+.reveal--delay-3 { transition-delay: .24s; }
+
+.stagger > * {
+  opacity: 0;
+  transform: perspective(var(--persp)) translate3d(0, 20px, -24px) rotate(-.6deg);
+  transition: opacity .65s var(--ease-out), transform .75s var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 70ms);
+}
+.stagger.is-visible > * { opacity: 1; transform: perspective(var(--persp)) translate3d(0,0,0) rotate(0deg); }
+.stagger.is-visible > .card { transform: rotate(var(--rot)); }
+
+.line-mask {
+  display: block;
+  overflow: hidden;
+  padding-bottom: .2em;
+  margin-bottom: -.2em;
+}
+.line-mask > span {
+  display: block;
+  transform: translateY(128%) rotate(1.5deg);
+  transition: transform 1s var(--ease-out);
+  transition-delay: calc(var(--l, 0) * 85ms);
+}
+.is-visible .line-mask > span { transform: translateY(0) rotate(0); }
+
+.parallax { --py: 0px; --px: 0px; transform: translate3d(var(--px), var(--py), 0); will-change: transform; }
+
+@keyframes drift {
+  0%,100% { transform: translate3d(-2%, 0%, 0) scale(1); }
+  33%     { transform: translate3d( 3%, 3%, 0) scale(1.06); }
+  66%     { transform: translate3d( 1%,-3%, 0) scale(.97); }
+}
+@keyframes sway {
+  0%,100% { transform: rotate(-11deg); }
+  50%     { transform: rotate(-8deg); }
+}
+
+.no-js .reveal, .no-js .stagger > * { opacity: 1; transform: none; }
+.no-js .line-mask > span { transform: none; }
+.no-js .u path { stroke-dashoffset: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .001ms !important;
+    transition-delay: 0ms !important;
+  }
+  .reveal, .stagger > * { opacity: 1; transform: none; }
+  .stagger > .card { transform: rotate(var(--rot)); }
+  .line-mask > span { transform: none; }
+  .parallax { transform: none; }
+  .u path { stroke-dashoffset: 0; }
+}
+
+/* ==========================================================
+   PHOTO LIGHTBOX
+   Built by script.js section 15. Nothing here exists until
+   JavaScript runs, so the page is unaffected without it.
+   ========================================================== */
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: clamp(var(--s-4), 5vw, var(--s-8));
+  background: rgba(47, 59, 24, .88);
+  opacity: 0;
+  transition: opacity var(--med);
+}
+.lightbox.is-open { opacity: 1 }
+
+.lightbox__fig {
+  margin: 0;
+  max-width: min(1100px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  /* The frame treatment follows the photo into the lightbox — cream
+     mount, drawn border — so it still reads as the same object. */
+  padding: var(--s-3);
+  background: var(--surface);
+  border: 2px solid var(--green-deep);
+  border-radius: var(--r-md);
+  transform: scale(.96) rotate(-.4deg);
+  transition: transform var(--med);
+}
+.lightbox.is-open .lightbox__fig { transform: scale(1) rotate(0deg) }
+
+.lightbox__fig img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 190px);
+  width: auto; height: auto;
+  object-fit: contain;
+  border-radius: var(--r-sm);
+}
+.lightbox__fig figcaption {
+  font-family: var(--font-display);
+  font-variation-settings: var(--wonk);
+  font-style: italic;
+  font-size: 1rem;
+  text-align: center;
+  color: var(--sage-text);
+  padding-bottom: var(--s-1);
+}
+
+.lightbox__close {
+  position: absolute;
+  top: clamp(12px, 3vw, 26px);
+  right: clamp(12px, 3vw, 26px);
+  width: 46px; height: 46px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--tang);
+  color: var(--green-deep);
+  border: 2px solid var(--green-deep);
+  cursor: pointer;
+  transition: transform var(--fast), background var(--fast);
+}
+.lightbox__close:hover { background: var(--tang-hi); transform: rotate(90deg) }
+.lightbox__close svg { width: 20px; height: 20px }
+
+/* The photo itself becomes a control, so it needs to look like one. */
+.frame img { cursor: zoom-in }
+.frame img:focus-visible {
+  outline: 3px solid var(--tang-text);
+  outline-offset: 3px;
+}
+
+body.is-locked { overflow: hidden }
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox, .lightbox__fig, .lightbox__close { transition: none }
+  .lightbox__fig { transform: none }
+}

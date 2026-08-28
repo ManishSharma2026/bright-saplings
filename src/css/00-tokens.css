@@ -1,0 +1,141 @@
+/* ==========================================================
+   BRIGHT SAPLINGS — DESIGN TOKENS
+
+   THE FLIP (Aug 2026)
+   Previously: cream page, big green bands, cream text on them.
+   Now:        pale yellow page, green type, light orange buttons.
+
+   Green stopped being a *ground* and became the *ink*. That one
+   change does most of the work, because every drawn border and
+   every hard shadow on the page reads from --line-ink, and the
+   footer reads from --bark-deep. Repointing those two at a deep
+   green flipped the whole site without touching the sections.
+
+   Every value below was contrast-checked against the grounds it
+   actually lands on. The numbers in the comments are real.
+   ========================================================== */
+
+:root {
+  /* ---- The page itself --------------------------------------
+     Pale yellow, warm, low chroma. Bright enough to feel sunny,
+     dull enough that green type sits on it at 10:1.             */
+  --page:    #fdf5dd;
+  --surface: #fffdf3;   /* cards — lifts off the yellow */
+  --cream:   #fffdf3;   /* alias: "cream" now means the card white */
+
+  /* ---- Bands, in the order the page uses them ---------------
+     page → sage → page → oat → blush → page → green-deep        */
+  --oat:   #f8ead0;   /* deeper yellow. muted on it: 4.9:1 */
+  --sage:  #e7eecf;   /* the greens' own tint. Warmed off grey — the first
+                         version was a shade too cold to sit next to yellow */
+  --blush: #fadfc9;   /* apricot. Lightened from #f2c9ae, which was the one
+                         band fighting the page: too saturated, and the wrong
+                         hue family next to the orange buttons. At this value
+                         every text token clears AA on it (muted 4.6:1), so
+                         the section no longer needs its own colour overrides */
+
+  /* ---- Green: now the ink, not the ground -------------------- */
+  --sapling:      #637234;   /* the logo "DAYCARE" green. Decoration + small marks */
+  --olive:        #838f4d;   /* the outer ring. Rules and underlines only, never text */
+  --sapling-deep: #4b5a2a;   /* mid band if one is ever needed */
+  --green-deep:   #2f3b18;   /* THE structural colour: borders, shadows, footer.
+                                cream on it 11.7:1, page on it 11.0:1 */
+
+  /* ---- Orange: now the buttons ------------------------------
+     Light enough to read as friendly, dark enough to carry the
+     deep-green label at 6.2:1. It is the only loud colour left,
+     which is what makes it work as the call to action.          */
+  --tang:      #f2ad6b;
+  --tang-hi:   #f7c08a;   /* hover — lighter, so the button lifts */
+  --tang-text: #9c4713;   /* the same hue as TEXT on light. 5.9:1 on page */
+
+  --sun:   #f8d682;   /* the logo's sun. Accent only now — too close to the page for type */
+  --bark:  #6b4b26;   /* the logo trunk. Small warm accents */
+
+  /* ---- Kept names, repointed --------------------------------
+     These are referenced across ~30 existing rules. Repointing
+     them here is what flipped the site in one move — do not
+     rename them without grepping first.                          */
+  --bark-deep:  #2f3b18;   /* was brown-black, now green-black */
+  --peach:      #e2794b;
+  --peach-text: #9c4713;   /* 5.9:1 on page */
+  --sage-text:  #3f4d20;   /* green as text on any light band. 7.7:1 on oat */
+
+  /* ---- Text --------------------------------------------------
+     All three are green. That is the "green writing" — it reads
+     as green in a block, but it is dark enough to be effortless. */
+  --ink:     #35411c;   /* headings.  10.0:1 on page */
+  --ink-2:   #3f4d20;   /* body.       8.4:1 on page */
+  --muted:   #5d6b34;   /* secondary.  5.3:1 on page, 4.9:1 on oat */
+  --on-dark: #fffdf3;
+
+  /* ---- Rules & shadows --------------------------------------
+     Drawn borders and hard offset shadows, never soft blurs.    */
+  --line:       rgba(47, 59, 24, .16);
+  --line-2:     rgba(47, 59, 24, .32);
+  --line-ink:   #2f3b18;
+  --line-light: rgba(255, 253, 243, .26);
+
+  --hard:      5px 5px 0 var(--line-ink);
+  --hard-lg:   8px 8px 0 var(--line-ink);
+  --soft:      0 3px 8px rgba(47,59,24,.07), 0 16px 40px rgba(47,59,24,.1);
+  --soft-lg:   0 8px 20px rgba(47,59,24,.09), 0 30px 70px rgba(47,59,24,.16);
+
+  /* ---- Shape ------------------------------------------------- */
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-xl: 30px;
+  --r-pill: 999px;
+
+  /* ---- Spacing scale -----------------------------------------
+     Every margin, padding and gap on the site comes from this
+     list. Before it existed the CSS used 9, 13, 15, 22, 26, 34,
+     38, 46 and 54px — all slightly different, all arbitrary, and
+     collectively the reason the page read as "nearly aligned"
+     rather than composed. Nine steps is plenty.
+
+     Use the token, not the number. If a value here is wrong,
+     changing it should fix every place that value appears.       */
+  --s-1:  4px;
+  --s-2:  8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 20px;
+  --s-6: 28px;
+  --s-7: 40px;
+  --s-8: 56px;
+  --s-9: 80px;
+
+  /* ---- Measure -------------------------------------------------
+     One line length for running text, one for short intros. Text
+     set wider than about 68 characters is measurably harder to
+     read, and the eye loses the start of the next line.           */
+  --measure:      62ch;
+  --measure-tight: 48ch;
+
+  /* ---- Rhythm ------------------------------------------------ */
+  --wrap:     1220px;
+  --gutter:   20px;
+  --sec-y:    78px;
+  --header-h: 70px;
+
+  /* ---- Depth ------------------------------------------------- */
+  --persp:    1300px;
+  --tilt-max: 4deg;
+
+  /* ---- Motion ------------------------------------------------ */
+  --ease:     cubic-bezier(.22, .61, .36, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --fast:     .16s var(--ease);
+  --med:      .34s var(--ease-out);
+  --slow:     .7s var(--ease-out);
+
+  /* ---- Type -------------------------------------------------- */
+  --font-display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --font-body:    "Karla", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --wonk:         "SOFT" 100, "WONK" 1;
+}
+
+@media (min-width: 560px) { :root { --gutter: 28px; } }
+@media (min-width: 860px) { :root { --sec-y: 112px; --gutter: 36px; --header-h: 78px; } }

@@ -1,0 +1,89 @@
+/* ==========================================================
+   SECTION: TESTIMONIALS — page ground
+   HTML: src/sections/09-testimonials.html
+
+   One quote gets to be large. The other two are small notes
+   beside it. Three equal cards would have been the safe choice
+   and it is exactly the choice that reads as generated.
+   ========================================================== */
+
+.quotes { display: grid; gap: 26px; }
+
+/* ---- The lead quote ------------------------------------------ */
+.quote-lead {
+  position: relative;
+  margin: 0;
+  padding: 38px 26px 30px;
+  background: var(--blush-soft);
+  border: 2px solid var(--ink);
+  border-radius: var(--r-xl);
+  box-shadow: var(--hard-lg);
+  transform: rotate(-.6deg);
+}
+.quote-lead::before {
+  content: "\201C";
+  position: absolute;
+  top: -22px; left: 24px;
+  width: 54px; height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--peach);
+  color: var(--cream);
+  border: 2px solid var(--ink);
+  font-family: var(--font-display);
+  font-size: 3rem;
+  line-height: 1.5;
+}
+.quote-lead blockquote { margin: 0; }
+.quote-lead blockquote p {
+  font-family: var(--font-display);
+  font-variation-settings: var(--wonk);
+  font-size: clamp(1.35rem, 1.05rem + 1.3vw, 2.05rem);
+  font-weight: 600;
+  line-height: 1.24;
+  letter-spacing: -.022em;
+  color: var(--ink);
+  margin-bottom: .7em;
+  text-wrap: pretty;
+}
+.quote-lead figcaption {
+  padding-top: 18px;
+  border-top: 2px dotted var(--line-2);
+  font-size: .9rem;
+  color: var(--muted);
+}
+.quote-lead figcaption strong { display: block; font-size: 1rem; margin-bottom: 1px; }
+
+/* ---- The two smaller notes ------------------------------------ */
+.quote-notes { display: grid; gap: 20px; align-content: start; }
+
+.quote-note {
+  margin: 0;
+  padding: 22px 22px 20px;
+  background: var(--surface);
+  border: 2px solid var(--ink);
+  border-radius: var(--r-lg);
+  box-shadow: var(--hard);
+}
+.quote-note:nth-child(1) { transform: rotate(1.1deg); }
+.quote-note:nth-child(2) { transform: rotate(-1deg); }
+
+.quote-note blockquote { margin: 0; }
+.quote-note blockquote p {
+  font-size: .97rem;
+  line-height: 1.55;
+  color: var(--ink-2);
+  margin-bottom: .9em;
+}
+.quote-note figcaption {
+  padding-top: 13px;
+  border-top: 2px dotted var(--line-2);
+  font-size: .82rem;
+  color: var(--muted);
+}
+.quote-note figcaption strong { display: block; color: var(--ink); }
+
+@media (min-width: 900px) {
+  .quotes { grid-template-columns: 1.15fr .85fr; gap: 32px; align-items: start; }
+}

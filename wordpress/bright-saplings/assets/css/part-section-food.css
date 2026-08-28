@@ -1,0 +1,155 @@
+/* ==========================================================
+   SECTION: FOOD — blush ground
+
+   Rewritten. The four-week menu, its tab strip, its print
+   stylesheet and its JavaScript are all gone. What's left is
+   two ideas: where the cooking comes from, and how allergies
+   are handled — the second styled harder than anything else on
+   the page, because it is the thing an anxious parent came to
+   find.
+
+   NOTE: the blush band was lightened to apricot, and --muted now
+   clears AA on it (4.6:1). The explicit --ink-2 below is kept
+   anyway — if anyone ever darkens the band again, this section
+   stays readable instead of quietly failing.
+   ========================================================== */
+
+#food .head p { color: var(--ink-2); }
+
+.food__grid { display: grid; gap: var(--s-6); margin-bottom: var(--s-7); }
+
+/* ---- The bakery card -------------------------------------- */
+.food__lead {
+  padding: var(--s-6) var(--s-6);
+  background: var(--surface);
+  border: 2px solid var(--green-deep);
+  border-radius: var(--r-lg);
+  box-shadow: var(--hard-lg);
+  transform: rotate(-.8deg);
+}
+.food__badge {
+  display: inline-flex; align-items: center; gap: var(--s-2);
+  margin-bottom: var(--s-4); padding: var(--s-2) var(--s-4) var(--s-2) var(--s-3);
+  border-radius: var(--r-pill);
+  background: var(--tang);
+  color: var(--green-deep);
+  border: 2px solid var(--green-deep);
+  font-size: .82rem; font-weight: 700;
+  transform: rotate(1.4deg);
+}
+.food__badge svg { width: 17px; height: 17px }
+
+.food__lead h3 {
+  font-size: clamp(1.35rem, 1.15rem + .8vw, 1.8rem);
+  letter-spacing: -.02em;
+  margin-bottom: .5em;
+}
+.food__lead p { color: var(--ink-2); margin-bottom: var(--s-3); max-width: 46ch }
+.food__lead p b { font-weight: 700; color: var(--ink) }
+
+/* ---- The four points -------------------------------------- */
+.food__points { display: grid; gap: var(--s-3); margin: 0; padding: 0; list-style: none }
+.food__points li {
+  padding: var(--s-4) var(--s-5) var(--s-4) var(--s-5);
+  background: rgba(255, 253, 243, .6);
+  border: 2px solid var(--green-deep);
+  border-radius: var(--r-md);
+  border-left-width: 7px;
+}
+.food__points li:nth-child(2n) { transform: rotate(.5deg) }
+.food__points li:nth-child(2n+1) { transform: rotate(-.4deg) }
+.food__points h4 {
+  font-family: var(--font-display); font-variation-settings: var(--wonk);
+  font-size: 1.06rem; font-weight: 700; letter-spacing: -.015em;
+  color: var(--ink); margin-bottom: var(--s-1);
+}
+.food__points p { margin: 0; font-size: .95rem; color: var(--ink-2) }
+
+/* ---- Allergies --------------------------------------------
+   Deep green slab. It is the only dark thing in this half of
+   the page, which is the point: a parent scanning for it finds
+   it without reading a word. */
+.allergy {
+  padding: var(--s-6) var(--s-6) var(--s-6);
+  background: var(--green-deep);
+  color: rgba(255, 253, 243, .92);
+  border: 2px solid var(--green-deep);
+  border-radius: var(--r-xl);
+  box-shadow: var(--hard-lg);
+}
+.allergy__head { display: grid; gap: var(--s-4); margin-bottom: 26px }
+.allergy__icon {
+  width: 52px; height: 52px; flex: 0 0 52px;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  background: var(--tang);
+  color: var(--green-deep);
+  border: 2px solid var(--tang-hi);
+}
+.allergy__icon svg { width: 26px; height: 26px }
+.allergy h3 {
+  font-size: clamp(1.3rem, 1.1rem + .8vw, 1.75rem);
+  letter-spacing: -.02em;
+  color: var(--on-dark);
+  margin-bottom: .35em;
+}
+.allergy__sub { margin: 0; color: rgba(255, 253, 243, .84); max-width: 52ch }
+
+.allergy__list { display: grid; gap: 0; margin: 0 0 var(--s-5); padding: 0; list-style: none }
+.allergy__list li {
+  padding: var(--s-4) 0 var(--s-4) var(--s-6);
+  border-top: 2px dotted rgba(255, 253, 243, .26);
+  color: rgba(255, 253, 243, .88);
+  font-size: .97rem; line-height: 1.62;
+  position: relative;
+}
+.allergy__list li:last-child { border-bottom: 2px dotted rgba(255, 253, 243, .26) }
+.allergy__list li::before {
+  content: ""; position: absolute; left: 4px; top: 25px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--tang);
+}
+.allergy__list b {
+  display: block;
+  font-family: var(--font-display); font-variation-settings: var(--wonk);
+  font-size: 1.04rem; font-weight: 700; letter-spacing: -.01em;
+  color: var(--on-dark); margin-bottom: var(--s-1);
+}
+
+.allergy__note {
+  margin: 0;
+  padding: var(--s-4) var(--s-4);
+  background: rgba(242, 173, 107, .16);
+  border: 2px solid rgba(242, 173, 107, .5);
+  border-radius: var(--r-md);
+  font-size: .95rem;
+  color: rgba(255, 253, 243, .92);
+}
+.allergy__note b { color: var(--tang-hi) }
+
+/* ---- The closing ask -------------------------------------- */
+.food__ask {
+  margin: var(--s-6) auto 0;
+  max-width: 58ch;
+  text-align: center;
+  font-size: 1rem;
+  color: var(--ink-2);
+}
+.food__ask a {
+  font-weight: 700; color: var(--ink);
+  border-bottom: 2px solid var(--green-deep);
+}
+
+@media (min-width: 620px) {
+  .allergy { padding: 40px 38px 34px }
+  .allergy__head { grid-template-columns: auto 1fr; align-items: start; gap: 20px }
+}
+@media (min-width: 900px) {
+  .food__grid { grid-template-columns: 1.05fr .95fr; gap: var(--s-7); align-items: start }
+  .food__points { gap: 16px }
+  .allergy { padding: 46px 46px 40px }
+  /* Deliberately stays one column. Two columns of dotted rules
+     reads as a spec sheet, and this needs to read as a promise. */
+  .allergy__list li { padding-left: var(--s-6); font-size: 1rem }
+  .allergy__note { max-width: 72ch }
+}

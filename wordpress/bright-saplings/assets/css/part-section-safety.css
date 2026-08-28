@@ -1,0 +1,107 @@
+/* ==========================================================
+   SECTION: SAFETY — sage ground
+   HTML: src/sections/06-safety.html
+
+   The one section that stays a plain specification sheet. It is
+   the moment a parent stops enjoying the site and starts
+   checking facts, and the design should get out of the way.
+   ========================================================== */
+
+.spec-figures {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 48px;
+}
+.spec-figures li {
+  padding: 18px 16px;
+  border-radius: var(--r-md);
+  background: rgba(243, 235, 219, .12);
+  border: 1.5px solid rgba(243, 235, 219, .26);
+}
+.spec-figures li:nth-child(2n) { transform: rotate(.7deg); }
+.spec-figures li:nth-child(2n+1) { transform: rotate(-.6deg); }
+
+.spec-figures b {
+  display: block;
+  font-family: var(--font-display);
+  font-variation-settings: var(--wonk);
+  font-size: clamp(1.85rem, 1.3rem + 2vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -.03em;
+  line-height: 1;
+  color: var(--on-dark);
+}
+.spec-figures span {
+  display: block;
+  margin-top: 8px;
+  font-size: .76rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+
+/* ---- Credential rows ---------------------------------------- */
+.spec-table { margin: 0; border-top: 2px dotted rgba(243,235,219,.34); }
+
+.spec-row {
+  display: grid;
+  gap: 6px;
+  padding: 20px 0;
+  border-bottom: 2px dotted rgba(243, 235, 219, .34);
+  transition: background var(--fast);
+}
+.spec-row:hover { background: rgba(243, 235, 219, .06); }
+
+.spec-row dt {
+  font-family: var(--font-display);
+  font-variation-settings: var(--wonk);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--on-dark);
+}
+.spec-row dd {
+  margin: 0;
+  font-size: .92rem;
+  line-height: 1.55;
+  color: rgba(243, 235, 219, .92);
+}
+
+/* status reads like a rubber stamp, not a UI chip */
+.spec-status {
+  align-self: start;
+  justify-self: start;
+  display: inline-block;
+  padding: 5px 13px;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--cream);
+  border: 2px solid rgba(243, 235, 219, .55);
+  border-radius: var(--r-sm);
+  white-space: nowrap;
+  transform: rotate(-2.5deg);
+}
+
+.spec-note {
+  margin-top: 30px;
+  font-size: .9rem;
+  color: rgba(243, 235, 219, .9);
+  max-width: 62ch;
+}
+
+@media (min-width: 620px) {
+  .spec-figures { grid-template-columns: repeat(4, 1fr); }
+}
+
+@media (min-width: 900px) {
+  .spec-row {
+    grid-template-columns: minmax(200px, 270px) 1fr 132px;
+    align-items: baseline;
+    gap: 32px;
+    padding: 22px 0;
+  }
+  .spec-status { justify-self: end; }
+}
