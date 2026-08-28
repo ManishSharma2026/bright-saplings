@@ -12,51 +12,85 @@ After the one-time setup below, updating the live site is one command.
 
 ## One-time setup
 
-### 1. Make a GitHub account
+Your account is **`ManishSharma2026`**, so everything below is filled in with
+your real username and the real final URL. Copy-paste as-is.
 
-`github.com` → Sign up. Free. Use an email you'll keep.
+### 1. Tell git who you are
 
-### 2. Tell git who you are
-
-Open **Terminal** (⌘-Space, type "Terminal"), and run these two, with your
-own name and the email you signed up with:
+Open **Terminal** (⌘-Space, type "Terminal") and run:
 
 ```bash
 git config --global user.name "Manish Sharma"
-git config --global user.email "you@example.com"
+git config --global user.email "ManishSharma2026@users.noreply.github.com"
 ```
 
-You only ever do this once, on this Mac.
+That second one is deliberate. **This repository will be public, and every
+commit records the email address of whoever made it — permanently, in the
+history, where anyone can read it.** GitHub gives you a `noreply` address
+exactly so you don't have to put your real one there. Commits still show up on
+your profile and still count as yours.
 
-### 3. Create the repository
+If a push is ever rejected saying your email is private, GitHub wants the exact
+numbered version. It's at **github.com/settings/emails**, and looks like
+`12345678+ManishSharma2026@users.noreply.github.com` — paste that into the
+command above and try again.
 
-On `github.com`, click **+** (top right) → **New repository**.
+You only do this once, on this Mac.
 
-- **Name:** `bright-saplings`
-- **Public** — it has to be public for the free GitHub Pages hosting. That's
-  fine: everything in here is a public website anyway, and there are no
-  passwords or private data in the folder.
-- **Do not** tick "Add a README" — the folder already has one, and ticking it
-  creates a conflict you'd have to untangle.
+### 2. Unstick the repo (30 seconds, one time only)
 
-Click **Create repository**. Leave that page open; you need the URL from it.
+The folder is **already a git repository with your first commit in it** — I set
+that up for you. But I had to do it through a bridge that isn't allowed to
+delete files on your Mac, and git creates and deletes temporary files constantly
+as it works. It got the commit made, then couldn't clean up after itself, and
+left four lock files behind that will block the next git command.
 
-### 4. Push the folder up
-
-In Terminal:
+Your Terminal has no such restriction. Run this once and it's sorted for good:
 
 ```bash
 cd ~/Day-care-website
-git init
-git add .
-git commit -m "Bright Saplings website"
+rm -f .git/index.lock .git/HEAD.lock .git/refs/heads/master.lock .git/objects/maintenance.lock
+find .git/objects -name 'tmp_obj_*' -delete
 git branch -M main
-git remote add origin https://github.com/YOUR-USERNAME/bright-saplings.git
+git status
+```
+
+`git status` should print *nothing to commit, working tree clean*. If it does,
+the repository is healthy and the 140 files are safely committed.
+
+> **If anything above errors**, don't fight it — the simplest fix is to start
+> the history fresh: `rm -rf .git` then `git init && git add . && git commit -m
+> "Bright Saplings website" && git branch -M main`. You lose nothing; there is
+> only one commit in there.
+
+### 3. Create the repository
+
+Go to **github.com/new**.
+
+- **Name:** `bright-saplings`
+- **Public** — required for free GitHub Pages hosting. Fine here: it's a
+  website, its HTML is public the moment it's online, and there are no
+  passwords or private data in the folder.
+- **Leave every checkbox unticked.** Do *not* add a README, .gitignore or
+  licence — the folder already has them, and ticking those creates a conflict
+  you'd have to untangle before your first push.
+
+Click **Create repository**.
+
+> You already have 31 repositories, so if `bright-saplings` is taken, use
+> `bright-saplings-daycare` and change the name in the command below to match.
+
+### 4. Push it up
+
+The commit already exists, so this just connects it to GitHub and sends it:
+
+```bash
+cd ~/Day-care-website
+git remote add origin https://github.com/ManishSharma2026/bright-saplings.git
 git push -u origin main
 ```
 
-Replace `YOUR-USERNAME`. GitHub will ask you to sign in — a browser window
-opens, you approve, done.
+GitHub will ask you to sign in — a browser window opens, you approve, done.
 
 > **If it asks for a password in the Terminal**, don't type your GitHub
 > password; it won't work. GitHub stopped accepting those. Install the helper
@@ -71,8 +105,10 @@ That's the whole setup. Go to the **Actions** tab and watch the first build
 run — about a minute. When it goes green, your site is live at:
 
 ```
-https://YOUR-USERNAME.github.io/bright-saplings/
+https://manishsharma2026.github.io/bright-saplings/
 ```
+
+(Lowercase — GitHub Pages URLs always are, whatever case your username is in.)
 
 **That's the link to send Pooja.**
 
