@@ -17,8 +17,7 @@
   color: var(--ink-2); padding-top: .3em;
 }
 .loc-facts .val { font-size: 1.04rem; color: var(--ink); font-weight: 700; }
-.loc-facts .val a { color: var(--ink); border-bottom: 2px solid rgba(47,59,24,.42) }
-.loc-facts .val a:hover { color: var(--peach-text); border-bottom-color: var(--peach-text) }
+.loc-facts .val a { color: var(--ink) }
 .loc-facts em {
   display: block; margin-top: var(--s-1);
   font-size: .84rem; font-style: normal; font-weight: 400;

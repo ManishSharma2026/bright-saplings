@@ -29,16 +29,13 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
         <span id="openStatus">Now enrolling &middot; Bothell, WA</span>
       </p>
 
+      <!-- THE punch line, and now the only headline. It is the line on the
+           logo, so the page and the badge say the same thing. The invented
+           "Growing little hearts, bright minds & big dreams" is gone. -->
       <h1 class="hero__title reveal is-visible">
-        <span class="line-mask"><span style="--l:0">Growing little hearts,</span></span>
-        <span class="line-mask"><span style="--l:1">bright <span class="u">minds<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 13 C 44 3, 88 18, 130 8 S 186 6, 197 12"/></svg></span></span></span>
-        <span class="line-mask"><span style="--l:2">&amp; big dreams.</span></span>
+        <span class="line-mask"><span style="--l:0">Growing <span class="u">bright minds<svg viewBox="0 0 200 20" preserveAspectRatio="none" aria-hidden="true"><path d="M3 13 C 44 3, 88 18, 130 8 S 186 6, 197 12"/></svg></span>,</span></span>
+        <span class="line-mask"><span style="--l:1">one child at a time.</span></span>
       </h1>
-
-      <!-- The punch line. It is on the logo, so it belongs on the page. -->
-      <p class="hero__tagline reveal reveal--delay">
-        Growing bright minds, one child at a time.
-      </p>
 
       <p class="hero__lede reveal reveal--delay">
         A licensed in-home daycare in Bothell for children 18&nbsp;months to
@@ -52,7 +49,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
           <svg viewBox="0 0 60 30" aria-hidden="true">
             <path d="M2 5 C 20 1, 42 9, 53 22"/><path d="M45 22 L 54 23.5 L 51 14"/>
           </svg>
-          <span>or reach us at <a href="tel:+14254289660">425-428-9660</a></span>
+          <span>or reach us at <a class="ul-link" href="tel:+14254289660">425-428-9660</a></span>
         </span>
       </div>
 

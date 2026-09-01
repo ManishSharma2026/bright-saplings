@@ -17,8 +17,17 @@
 .u { position: relative; white-space: nowrap; }
 .u svg {
   position: absolute;
-  left: -2%; bottom: -.12em;
-  width: 104%; height: .2em;
+  left: -2%;
+  /* Sits just under the baseline, NOT under the box. At bottom:-.12em
+     with tight display leading it dropped into the cap-height of the
+     line below and read as a strike-through on the wrong line. The
+     headline's line-height carries the rest of the clearance. */
+  /* Below the descenders, not through them. "bright" has a g, and at
+     .02em the stroke ran straight through its tail and read as a
+     strike-through. -.07em clears it; the headline's 1.2 leading keeps
+     it off the line underneath. */
+  bottom: -.07em;
+  width: 104%; height: .16em;
   overflow: visible;
 }
 .u path {
@@ -33,6 +42,30 @@
 .is-visible .u path { stroke-dashoffset: 0; }
 .u--peach path { stroke: var(--peach); }
 .u--sun path { stroke: var(--sun); }
+
+/* ---- The one underline on the site -------------------------
+   Drawn as a background gradient rather than a border, for three
+   reasons that all showed up as bugs in the border version:
+
+   1. It is positioned and sized in em, so it holds the same visual
+      distance from the letters at 0.9rem and at 2.5rem. A border sits
+      at a fixed offset from the box and drifts as type scales.
+   2. It sits under the baseline instead of on it, so it stops
+      colliding with the descenders in "g" and "y".
+   3. It can animate its width on hover, which a border cannot.       */
+.ul-link {
+  background-image: linear-gradient(var(--tang), var(--tang));
+  background-repeat: no-repeat;
+  background-size: 100% .09em;
+  background-position: 0 calc(100% - .06em);
+  padding-bottom: .12em;
+  transition: background-size var(--med), color var(--fast);
+}
+.ul-link:hover {
+  color: var(--ink);
+  background-image: linear-gradient(var(--green-deep), var(--green-deep));
+  background-size: 100% .12em;
+}
 
 /* ---- Little arrow beside a call to action ------------------ */
 .aside-note {
@@ -144,10 +177,13 @@
   padding-bottom: var(--s-1);
   font-weight: 700;
   color: var(--ink);
-  border-bottom: 2px solid var(--peach);
+  /* The arrow link keeps a drawn rule, because the arrow needs
+     something to sit on. Thin, and offset off the baseline. */
+  border-bottom: 2px solid var(--tang);
+  padding-bottom: var(--s-1);
   transition: gap var(--fast), border-color var(--fast);
 }
-.link-arrow:hover { gap: var(--s-3); border-bottom-color: var(--ink); }
+.link-arrow:hover { gap: var(--s-3); border-bottom-color: var(--green-deep); }
 .link-arrow svg { width: 16px; height: 16px; }
 
 .note-line {

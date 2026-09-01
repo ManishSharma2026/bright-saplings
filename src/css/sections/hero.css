@@ -71,23 +71,14 @@
 
 .hero__title {
   font-size: clamp(2.5rem, 1.5rem + 4.5vw, 4.4rem);
-  font-weight: 600; line-height: 1.08;
+  font-weight: 600;
+  /* 1.08 was too tight once the drawn mark went under a middle line:
+     there was physically nowhere for it to go. 1.16 still reads as
+     display leading and gives the mark somewhere to live. */
+  line-height: 1.2;
   letter-spacing: -.03em; color: var(--ink);
-  margin-bottom: .36em;
+  margin-bottom: .4em;
 }
-/* The punch line, straight off the logo. Set in the display face at a
-   size between the headline and the body so it reads as a line someone
-   says, not a subheading. */
-.hero__tagline {
-  font-family: var(--font-display);
-  font-variation-settings: var(--wonk);
-  font-size: clamp(1.14rem, 1rem + .7vw, 1.5rem);
-  font-weight: 500; font-style: italic;
-  line-height: 1.3; letter-spacing: -.015em;
-  color: var(--tang-text);
-  margin-bottom: var(--s-4);
-}
-
 .hero__lede {
   font-size: clamp(1.06rem, 1rem + .42vw, 1.24rem);
   line-height: 1.56; max-width: 42ch;
@@ -109,11 +100,7 @@
   padding-top: var(--s-2);
 }
 .aside-note--stacked svg { margin-left: var(--s-3) }
-.aside-note--stacked a {
-  font-weight: 700; color: var(--ink);
-  border-bottom: 2px solid var(--tang);
-}
-.aside-note--stacked a:hover { border-bottom-color: var(--green-deep) }
+.aside-note--stacked a { font-weight: 700; color: var(--ink) }
 
 .hero__facts { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s-2); margin: 0; }
 .fact {

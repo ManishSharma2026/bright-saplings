@@ -97,7 +97,7 @@ a:hover { color: var(--ink); }
    This matters — tapping the phone number is the single most valuable
    action on the page for a parent holding a phone. */
 a[href^="tel:"],
-a[href="#top"] { padding-block: 10px; }
+a[href="#top"] { padding-block: 13px; }
 
 strong, b { font-weight: 700; color: var(--ink); }
 em { font-style: italic; }

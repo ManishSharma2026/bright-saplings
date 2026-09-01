@@ -17,30 +17,42 @@
   color: var(--muted); padding-top: .3em;
 }
 .contact-list a, .contact-list > li > span:last-child { font-size: 1.05rem; color: var(--ink) }
-.contact-list a { font-weight: 700; border-bottom: 2px solid var(--peach) }
-.contact-list a:hover { color: var(--peach-text); border-bottom-color: var(--ink) }
+.contact-list a { font-weight: 700 }
 .contact-list em {
   display: block; margin-top: var(--s-1);
   font-size: .84rem; color: var(--muted); font-style: normal;
 }
 
 .phone-big {
-  display: inline-flex; align-items: center; gap: var(--s-3);
-  margin: var(--s-2) 0 var(--s-6);
+  /* No underline. At 2.5rem a rule under the number looked like a
+     correction mark, and the number does not need underlining to read
+     as a phone number — it is the largest thing in the column and it
+     has a phone icon next to it.
+
+     Instead the icon sits in its own soft disc, which does the work an
+     underline was failing to do: it marks this as a thing you press. */
+  display: inline-flex; align-items: center; gap: var(--s-4);
+  margin: var(--s-3) 0 var(--s-6);
   font-family: var(--font-display); font-variation-settings: var(--wonk);
   font-size: clamp(1.7rem, 1.2rem + 2vw, 2.5rem);
   font-weight: 700; letter-spacing: -.02em;
   color: var(--ink);
-  /* The rule was sitting right on the digits. At 2.5rem there is no
-     descender in "425-428-9660" to clear, but the line still needs air
-     or it reads as an underscore rather than an underline. Drawn as a
-     border on padding rather than text-decoration so the gap is
-     controllable. */
-  border-bottom: 3px solid var(--tang);
-  padding-bottom: var(--s-2);
+  transition: color var(--fast);
 }
-.phone-big:hover { color: var(--tang-text); border-bottom-color: var(--green-deep) }
-.phone-big svg { width: 26px; height: 26px; color: var(--tang-text) }
+.phone-big__icon {
+  display: grid; place-items: center;
+  width: 2.1em; height: 2.1em; flex: 0 0 auto;
+  font-size: .42em;
+  border-radius: 50%;
+  background: var(--tang);
+  color: var(--green-deep);
+  border: 2px solid var(--green-deep);
+  box-shadow: 3px 3px 0 var(--green-deep);
+  transition: transform var(--med), background var(--fast);
+}
+.phone-big:hover { color: var(--tang-text) }
+.phone-big:hover .phone-big__icon { background: var(--tang-hi); transform: rotate(-8deg) scale(1.05) }
+.phone-big svg { width: 1.5em; height: 1.5em }
 
 .form {
   padding: var(--s-6) var(--s-5);

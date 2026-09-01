@@ -137,7 +137,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
     <p class="food__ask">
       Want to know what's cooking this week, or whether we can work around
-      something specific? <a href="tel:+14254289660">Reach us at 425-428-9660</a>
+      something specific? <a class="ul-link" href="tel:+14254289660">Reach us at 425-428-9660</a>
       and ask. You'll get a straight answer from the person doing the cooking.
     </p>
 
