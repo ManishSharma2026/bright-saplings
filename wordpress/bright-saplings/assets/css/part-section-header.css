@@ -21,9 +21,15 @@
 /* No border here: the logo already draws its own olive ring, and a
    second one around it reads as a mistake. */
 .brand__logo {
-  width: 48px; height: 48px; flex: 0 0 48px;
-  border-radius: 50%;
+  width: 52px; height: 52px; flex: 0 0 52px;
+  /* NO border-radius. The PNG is already a transparent disc with its
+     olive ring drawn right at the edge, so a 50% radius clipped a
+     hairline off that ring all the way round — which is what read as
+     the logo being "cut off" in the corner. Nothing to clip here. */
   object-fit: contain;
+  /* A hair of room so the ring never touches the header's bottom
+     border when the bar shrinks on scroll. */
+  padding: 1px;
   transition: transform var(--med);
 }
 .brand:hover .brand__logo { transform: rotate(-5deg) scale(1.06); }

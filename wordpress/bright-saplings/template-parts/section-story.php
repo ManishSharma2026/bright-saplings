@@ -80,7 +80,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
         <p class="lede reveal">
           Pooja Agarwal came here from India with her husband and two small
-          children &mdash; a daughter, and a son a few years behind her.
+          children: a daughter, and a son a few years behind her.
           Everything Bright Saplings is now started in that house, long before
           it had a name.
           <!-- ⟨WHERE AND WHEN⟩ If Pooja is happy to say, this is the natural
@@ -112,7 +112,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
             <h3>So she baked</h3>
             <p>
               It was the thing that made the house feel like hers. Then
-              neighbours started asking, and friends of neighbours after that.
+              neighbors started asking, and friends of neighbors after that.
               <!-- ⟨WHAT SHE BAKED⟩ Names of two or three actual things would
                    land beautifully here. -->
             </p>
@@ -124,9 +124,9 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
             </span>
             <h3>Sugar n Flakes Bakery &amp; Cafe</h3>
             <p>
-              The asking turned into a shop. Years of it &mdash; early mornings,
-              real ingredients, and learning exactly how much a small person
-              will actually eat.
+              The asking turned into a store. Years of it: early mornings, real
+              ingredients, and learning exactly how much a small person will
+              actually eat.
               <!-- ⟨THE BAKERY⟩ Worth having: the year it opened, and where.
                    If it's still trading, say so — it's a credential. -->
             </p>
@@ -139,9 +139,9 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
             <h3>And then the children</h3>
             <p>
               What she hadn't planned for was who a warm room fills up with.
-              Parents, and their children, and the slow realisation that the
+              Parents, and their children, and the slow realization that the
               part of the day she looked forward to was the small people at the
-              table &mdash; not the counter.
+              table, not the counter.
               <!-- ⟨THE TURNING POINT⟩ The most important question to ask her:
                    what was the moment she decided to open a daycare? -->
             </p>

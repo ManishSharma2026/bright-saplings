@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
       <h2 class="about__statement">Conveniently placed for families around Bothell.</h2>
 
       <p class="lede">
-        We're a home program in a quiet residential neighbourhood, minutes from
+        We're a home program in a quiet residential neighborhood, minutes from
         the 527 and easy to reach on the way to work.
       </p>
 
@@ -30,25 +30,25 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
         <li>
           <span class="lbl">Area</span>
           <span class="val">Bothell, WA
-            <em>The exact address is shared once your tour is confirmed &mdash; it is a family home.</em>
+            <em>The exact address is shared once your tour is confirmed. It is a family home.</em>
           </span>
         </li>
         <li>
           <span class="lbl">Hours</span>
-          <span class="val">8:00am &ndash; 6:00pm
+          <span class="val">8:00am to 6:00pm
             <em>Monday to Friday. Full-day care with a healthy balance of learning and play.</em>
           </span>
         </li>
         <li>
           <span class="lbl">Ages</span>
-          <span class="val">18 months &ndash; 5 years
+          <span class="val">18 months to 5 years
             <em>Caring for toddlers and preschoolers.</em>
           </span>
         </li>
         <li>
           <span class="lbl">Phone</span>
           <span class="val"><a href="tel:+14254289660">425-428-9660</a>
-            <em>Call or text &mdash; whichever is easier.</em>
+            <em>Call or text, whichever is easier.</em>
           </span>
         </li>
       </ul>

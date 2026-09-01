@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
     <div class="head head--centred reveal">
       <span class="sticker">Two groups</span>
       <h2>Toddlers and preschoolers, under one roof.</h2>
-      <p>Children move up when they're ready, not on a birthday &mdash; and they
+      <p>Children move up when they're ready, not on a birthday, and they
         share the same table, the same yard and the same grown-ups the whole way
         through.</p>
     </div>
@@ -36,7 +36,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
           </div>
         </div>
         <div class="card__body">
-          <span class="tag">18 months &ndash; 3 years</span>
+          <span class="tag">18 months to 3 years</span>
           <h3>Toddlers</h3>
           <p>Big feelings, small hands. This is the year for words, for routine,
             and for learning that waiting is survivable.</p>
@@ -58,7 +58,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
           </div>
         </div>
         <div class="card__body">
-          <span class="tag">3 &ndash; 5 years</span>
+          <span class="tag">3 to 5 years</span>
           <h3>Preschool</h3>
           <p>Kindergarten readiness without a single worksheet. Letters and
             numbers turn up inside projects, cooking and building.</p>

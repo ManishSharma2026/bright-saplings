@@ -26,14 +26,21 @@
 
 .phone-big {
   display: inline-flex; align-items: center; gap: var(--s-3);
-  margin: var(--s-1) 0 var(--s-1);
+  margin: var(--s-2) 0 var(--s-6);
   font-family: var(--font-display); font-variation-settings: var(--wonk);
   font-size: clamp(1.7rem, 1.2rem + 2vw, 2.5rem);
   font-weight: 700; letter-spacing: -.02em;
-  color: var(--ink); border-bottom: 3px solid var(--peach);
+  color: var(--ink);
+  /* The rule was sitting right on the digits. At 2.5rem there is no
+     descender in "425-428-9660" to clear, but the line still needs air
+     or it reads as an underscore rather than an underline. Drawn as a
+     border on padding rather than text-decoration so the gap is
+     controllable. */
+  border-bottom: 3px solid var(--tang);
+  padding-bottom: var(--s-2);
 }
-.phone-big:hover { color: var(--peach-text) }
-.phone-big svg { width: 26px; height: 26px; color: var(--peach-text) }
+.phone-big:hover { color: var(--tang-text); border-bottom-color: var(--green-deep) }
+.phone-big svg { width: 26px; height: 26px; color: var(--tang-text) }
 
 .form {
   padding: var(--s-6) var(--s-5);

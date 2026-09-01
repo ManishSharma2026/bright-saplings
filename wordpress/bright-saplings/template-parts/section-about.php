@@ -34,13 +34,13 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
     <div class="about__copy reveal reveal--delay">
       <h2 class="about__statement">
-        A warm, home-like place where little hearts grow and futures blossom.
+        A warm, home-like place where little hearts grow &amp; bright futures blossom.
       </h2>
 
       <p class="lede">
         Bright Saplings is a licensed in-home daycare in Bothell for toddlers and
-        preschoolers &mdash; 18&nbsp;months to 5&nbsp;years. Nurturing today,
-        inspiring tomorrow.
+        preschoolers, 18&nbsp;months to 5&nbsp;years. Nurturing today, inspiring
+        tomorrow.
       </p>
       <p>
         We keep our groups small on purpose. It means every child is known by
@@ -55,14 +55,14 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10l8-6 8 6v10"/><path d="M4 20h16M10 20v-5h4v5"/></svg>
           </span>
           <h3>A warm, home-like environment</h3>
-          <p>Where children feel safe, loved and supported &mdash; a second home, not an institution.</p>
+          <p>Where children feel safe, loved and supported. A second home, not an institution.</p>
         </li>
         <li>
           <span class="offer__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 5h7a3 3 0 0 1 3 3v11a2.5 2.5 0 0 0-2.5-2.5H3Z"/><path d="M21 5h-7a3 3 0 0 0-3 3v11a2.5 2.5 0 0 1 2.5-2.5H21Z"/></svg>
           </span>
           <h3>Play-based learning</h3>
-          <p>Building confidence, curiosity and a genuine love for learning &mdash; not worksheets.</p>
+          <p>Building confidence, curiosity and a genuine love for learning, not worksheets.</p>
         </li>
         <li>
           <span class="offer__icon" aria-hidden="true">
@@ -76,14 +76,14 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="3.5"/><path d="M19 20v-2a4 4 0 0 0-3-3.9"/><path d="M15 3.6a4 4 0 0 1 0 6.8"/></svg>
           </span>
           <h3>Small class sizes</h3>
-          <p>Personalised care and meaningful attention, every day, for every child.</p>
+          <p>Personalized care and meaningful attention, every day, for every child.</p>
         </li>
         <li>
           <span class="offer__icon" aria-hidden="true">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.8 8.6a5 5 0 0 0-8.8-2.6 5 5 0 0 0-8.8 2.6C3.2 13.6 12 19 12 19s8.8-5.4 8.8-10.4Z"/></svg>
           </span>
           <h3>Social-emotional development</h3>
-          <p>Helping children grow kind, confident and independent &mdash; the part that lasts.</p>
+          <p>Helping children grow kind, confident and independent. That is the part that lasts.</p>
         </li>
         <li>
           <span class="offer__icon" aria-hidden="true">

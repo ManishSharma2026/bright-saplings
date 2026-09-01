@@ -24,55 +24,58 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
       <span class="sticker sticker--peach">Every single day</span>
       <h2>There's a rhythm to it.</h2>
       <p>Children settle when they know what comes next. The order of our day
-        never changes &mdash; only what we put inside it.</p>
+        stays the same. Only what we put inside it changes.</p>
     </div>
 
+    <!-- The real running order, exactly as Bright Saplings gave it.
+         Do not reorder these to look tidier: meals and nap sit where
+         they sit because that is how the day actually runs. -->
     <ul class="rhythm stagger">
       <li><span class="rhythm__dot" aria-hidden="true">1</span> Morning Circle</li>
-      <li><span class="rhythm__dot" aria-hidden="true">2</span> Story Time</li>
-      <li><span class="rhythm__dot" aria-hidden="true">3</span> Music &amp; Movement</li>
-      <li><span class="rhythm__dot" aria-hidden="true">4</span> ABC Adventure</li>
-      <li><span class="rhythm__dot" aria-hidden="true">5</span> Number Ninjas</li>
-      <li><span class="rhythm__dot" aria-hidden="true">6</span> Discovery Time</li>
-      <li><span class="rhythm__dot" aria-hidden="true">7</span> Creative Corner</li>
-      <li><span class="rhythm__dot" aria-hidden="true">8</span> Outdoor Explorers</li>
-      <li><span class="rhythm__dot" aria-hidden="true">9</span> Quiet Time</li>
-      <li><span class="rhythm__dot" aria-hidden="true">10</span> Learning Centers</li>
+      <li><span class="rhythm__dot" aria-hidden="true">2</span> Breakfast</li>
+      <li><span class="rhythm__dot" aria-hidden="true">3</span> Creative Corner</li>
+      <li><span class="rhythm__dot" aria-hidden="true">4</span> Outdoor Explorers</li>
+      <li><span class="rhythm__dot" aria-hidden="true">5</span> ABC &amp; Number Adventure</li>
+      <li><span class="rhythm__dot" aria-hidden="true">6</span> Music &amp; Movement</li>
+      <li><span class="rhythm__dot" aria-hidden="true">7</span> Lunch</li>
+      <li><span class="rhythm__dot" aria-hidden="true">8</span> Story Time</li>
+      <li><span class="rhythm__dot" aria-hidden="true">9</span> Quiet / Nap Time</li>
+      <li><span class="rhythm__dot" aria-hidden="true">10</span> Evening Snacks &amp; Indoor Play</li>
     </ul>
 
     <div class="reveal">
-      <h3 class="sub-head">And every day of the week has its own flavour.</h3>
-      <p>So a Tuesday feels different from a Thursday, and children start looking
-        forward to things.</p>
+      <!-- These themes are NOT on a weekly timetable. The client was
+           explicit: "not every day of the week but some random days."
+           The day names below are just what each theme is called. -->
+      <h3 class="sub-head">And some days have their own flavor.</h3>
+      <p>Not on a timetable, and not every week. They turn up when they turn up,
+        which is half the fun of them.</p>
     </div>
 
     <div class="week-themes stagger">
       <article class="wtheme">
-        <p class="wtheme__day">Monday</p>
         <h3>Colorful Creations</h3>
         <ul>
-          <li>Wear the colour of the week</li>
+          <li>Wear the color of the day</li>
           <li>Rainbow fruit or vegetable tasting</li>
-          <li>Colour matching games</li>
+          <li>Color matching games</li>
           <li>Finger painting</li>
-          <li>A book about colours</li>
+          <li>A book about colors</li>
         </ul>
       </article>
 
       <article class="wtheme">
-        <p class="wtheme__day">Tuesday</p>
         <h3>Tasty Tuesday</h3>
         <ul>
           <li>Taste a new fruit or vegetable</li>
           <li>Simple no-bake cooking</li>
           <li>Where food comes from</li>
-          <li>Practising table manners</li>
+          <li>Practicing table manners</li>
           <li>Talking about healthy foods</li>
         </ul>
       </article>
 
       <article class="wtheme">
-        <p class="wtheme__day">Wednesday</p>
         <h3>Wonder Wednesday</h3>
         <ul>
           <li>Nature walk</li>
@@ -84,7 +87,6 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
       </article>
 
       <article class="wtheme">
-        <p class="wtheme__day">Thursday</p>
         <h3>Creative Kids</h3>
         <ul>
           <li>Painting</li>
@@ -96,14 +98,13 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
       </article>
 
       <article class="wtheme">
-        <p class="wtheme__day">Friday</p>
         <h3>Fun Friday</h3>
         <ul>
           <li>Dance party</li>
           <li>Show &amp; Tell</li>
           <li>Bubble party</li>
           <li>Picnic lunch outside</li>
-          <li>Pyjama day, once a month</li>
+          <li>Pajama day</li>
         </ul>
       </article>
     </div>
