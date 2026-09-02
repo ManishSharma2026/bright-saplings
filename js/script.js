@@ -248,25 +248,35 @@
      FormSubmit, because it needs no account: the address in the URL
      IS the configuration. Enquiries land in that inbox.
 
-     ⚠ TWO THINGS TO KNOW
+     That long hex string is FormSubmit's alias for an email address.
+     It delivers to the same inbox without naming it, which matters
+     because this repository is public and this file ships to every
+     visitor: a plain address here would be scraped within days.
 
-     1. ACTIVATION. The very first submission does not arrive as an
-        enquiry — FormSubmit emails that address a confirmation link
-        instead, and nothing is delivered until someone clicks it.
-        So the first test send is the activation, and the second is
-        the real test. Do both before telling a parent to use this.
+     ⚠ ACTIVATION IS PER DOMAIN, NOT JUST PER ADDRESS.
 
-     2. THIS ADDRESS IS PUBLIC. The repository is public and this file
-        ships to every visitor, so a scraper can read the address and
-        it will attract spam. FormSubmit's own fix: once activated,
-        your dashboard shows a hashed alias like
-            https://formsubmit.co/ajax/a1b2c3d4e5f6...
-        which delivers to the same inbox without naming it. Swap the
-        line below for that alias as soon as you have it.
+     The confirmation email FormSubmit sends is titled "Activate
+     FormSubmit on <the URL you submitted from>". So activating on
+     localhost does NOT activate the live site. Expect one more
+     activation click the first time a form is submitted from each
+     new address:
 
-     When Bright Saplings has its own address, this is the one line
-     that changes. -------------------------------------------------- */
-  var FORM_ENDPOINT = 'https://formsubmit.co/ajax/manishm.sharma91@gmail.com';
+         http://localhost:8000/                  (done)
+         https://manishsharma2026.github.io/...  (on first submit)
+         https://brightsaplings.com/             (on first submit)
+
+     Nothing is lost in between — FormSubmit holds submissions and
+     delivers them once the form is confirmed — but a message sitting
+     in a queue is not a message anyone has read. After every domain
+     change: submit once, click the link, submit again, confirm it
+     lands.
+
+     Currently delivering to Manish for testing. When Bright Saplings
+     has its own address, Pooja submits the form once, gets her own
+     activation email with her own alias in it, and that alias
+     replaces the string below. That is the whole handover.
+     -------------------------------------------------------------- */
+  var FORM_ENDPOINT = 'https://formsubmit.co/ajax/de95cdd9a55d4c65b9ceb0f8b140bf72';
   var PHONE = '425-428-9660';
 
   var form   = $('#tourForm');

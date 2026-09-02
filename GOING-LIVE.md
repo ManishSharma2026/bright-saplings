@@ -91,47 +91,60 @@ If you'd rather not, send me the domain and I'll do it in a minute.
 
 ---
 
-## 4. Activate the form (two minutes, and it is not optional)
+## 4. Activate the form (once per domain — this is the bit that surprises people)
 
-The form now posts to **FormSubmit**, delivering to
-`manishm.sharma91@gmail.com` for testing. No account, no dashboard: the address
-in the URL is the whole configuration.
+The form posts to **FormSubmit**. There is no account and no dashboard: a hex
+alias in the URL stands in for the destination inbox.
 
-**But it will not deliver anything until it is activated.**
-
-1. Open the live site, fill the form in, send it.
-2. That first submission does **not** arrive as an enquiry. FormSubmit emails
-   that inbox a confirmation link instead.
-3. Click the link.
-4. Send a **second** test. That one should land properly.
-
-Do all four before you tell anyone to use the form. Then check the spam folder,
-because the first real one usually goes there.
-
-### Two things to change before this is Pooja's
-
-**The address is public.** The repository is public and `js/script.js` ships to
-every visitor, so a scraper can read that Gmail address and it will attract
-spam. Once the form is activated, FormSubmit's dashboard gives you a hashed
-alias:
-
-```
-https://formsubmit.co/ajax/a1b2c3d4e5f6...
+```js
+var FORM_ENDPOINT = 'https://formsubmit.co/ajax/de95cdd9a55d4c65b9ceb0f8b140bf72';
 ```
 
-It delivers to the same inbox without naming it anywhere. Swap it into
-`FORM_ENDPOINT` in section 09 of `js/script.js` and rebuild.
+That alias delivers to Manish while this is being tested. It is a hex string
+rather than the address itself because this repository is public and
+`js/script.js` ships to every visitor — a plain email address here would be
+scraped within days.
 
-**Enquiries should reach Bright Saplings, not you.** When Pooja has an address
-for the business, that same one line changes again. Everything else stays as it
-is.
+### Activation is per DOMAIN, not just per address
+
+This is the part that catches people out. FormSubmit's confirmation email is
+titled **"Activate FormSubmit on \<the URL you submitted from\>"**. Activating
+on `localhost` does **not** activate the live site.
+
+So expect one activation click for each address the form is ever used from:
+
+| Where | When |
+|---|---|
+| `http://localhost:8000/` | done during development |
+| `https://manishsharma2026.github.io/bright-saplings/` | first submit after the site goes live |
+| `https://brightsaplings.com/` | first submit after the domain is attached |
+
+Each time, the drill is the same and takes a minute:
+
+1. Submit the form once from the new address.
+2. FormSubmit emails a confirmation link instead of delivering the enquiry.
+3. Click it.
+4. **Submit again and confirm the second one actually lands in the inbox.**
+
+Step 4 is not optional. Activation succeeding is not the same as a message
+arriving, and the entire point of this form's design is that it never pretends.
+
+Nothing is lost in the gap — FormSubmit holds submissions and delivers them once
+the form is confirmed — but a message sitting in a queue is not a message anyone
+has read.
+
+### Handing it to Pooja
+
+When Bright Saplings has its own address, she submits the form once, gets her
+own activation email with **her own alias** in it, and that alias replaces the
+string above. That is the whole handover: one line, one click.
 
 ### If a send fails
 
 The form does not dead-end. It shows the phone number and a **Text this to us**
-button carrying the whole enquiry, and it leaves the fields filled so nothing
-the parent typed is lost. `tests/form-test.js` checks both outcomes with the
-network mocked, so no test run ever emails a real person.
+button carrying the whole enquiry, and leaves the fields filled so nothing the
+parent typed is lost. `tests/form-test.js` checks both outcomes with the network
+mocked, so no test run ever emails a real person.
 
 ---
 

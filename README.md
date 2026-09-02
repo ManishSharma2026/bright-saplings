@@ -329,17 +329,21 @@ of `build.py`, run the build, then add the section to `front-page.php` and
 
 ## The contact form
 
-It posts to **FormSubmit**, delivering to `manishm.sharma91@gmail.com` while
-this is being tested. One line in section 09 of `js/script.js`:
+It posts to **FormSubmit**. One line in section 09 of `js/script.js`:
 
 ```js
-var FORM_ENDPOINT = 'https://formsubmit.co/ajax/manishm.sharma91@gmail.com';
+var FORM_ENDPOINT = 'https://formsubmit.co/ajax/de95cdd9a55d4c65b9ceb0f8b140bf72';
 ```
 
-**It must be activated before it delivers anything.** The first submission
-triggers a confirmation email to that inbox rather than arriving as an enquiry.
-See `GOING-LIVE.md` step 4 — and read the part about swapping in the hashed
-alias, because a public repo means that address is scrapable.
+That hex string is FormSubmit's alias for a destination inbox — currently
+Manish's, for testing. It is an alias rather than the address itself because
+this repo is public and `script.js` ships to every visitor; a plain email
+address here would be scraped within days.
+
+**Activation is per domain, not just per address.** FormSubmit's confirmation
+email is titled *"Activate FormSubmit on &lt;the URL you submitted from&gt;"*, so
+activating on localhost does not activate the live site. Every new address needs
+one activation click. `GOING-LIVE.md` step 4 has the drill.
 
 **Why the three outcomes are all honest.** This form used to say *"Thanks! Your
 request is in"* while sending the message precisely nowhere. A parent would have
