@@ -213,22 +213,24 @@
 
   /* ---------- 09. CONTACT FORM ----------------------------- *
    *
-   * ⚠ THE ONE LINE THAT MATTERS
+   * ⚠ THE ONE LINE THAT MATTERS is FORM_ENDPOINT, just below.
    *
-   *      var FORM_ENDPOINT = '';
+   * This form used to say "Thanks! Your request is in" while sending
+   * the message precisely nowhere. A parent would have sat waiting
+   * for a reply that could never come, and Bright Saplings would
+   * never have known they existed. On a page whose whole job is
+   * booking tours, that is the worst failure available.
    *
-   * While that is empty, the form does NOT pretend to have sent
-   * anything. It used to say "Thanks! Your request is in" while
-   * sending the message precisely nowhere — a parent would have sat
-   * waiting for a reply that could never come, and Bright Saplings
-   * would never have known they existed. That is the worst failure
-   * this page could have, so it is now impossible: with no endpoint
-   * the form says so plainly and hands them a way to reach a human.
+   * So the three outcomes are now all honest:
    *
-   * Put a Formspree URL in FORM_ENDPOINT and everything below starts
-   * working normally. Nothing else needs changing.
+   *   endpoint set + send works   -> real thank-you
+   *   endpoint set + send fails   -> phone number + "text this to us"
+   *   no endpoint at all          -> says so plainly, same fallbacks
    *
-   * TO MAKE IT ACTUALLY SEND, pick one:
+   * In every case the fields keep what was typed unless the message
+   * genuinely went somewhere.
+   *
+   * OTHER BACKENDS, if you ever move off FormSubmit:
    *
    *  A) Formspree / Basin / Getform — easiest, no code:
    *     add   action="https://formspree.io/f/YOUR_ID"  method="POST"
@@ -242,10 +244,29 @@
    *
    *  On WordPress, use a form plugin instead — see wordpress/README.md.
    * -------------------------------------------------------- */
-  /* Paste a Formspree (or Basin, or Getform) URL here and the form
-     starts posting for real. Leave it empty and the form is honest
-     about not being connected. */
-  var FORM_ENDPOINT = '';
+  /* ---- WHERE TOUR REQUESTS GO ---------------------------------
+     FormSubmit, because it needs no account: the address in the URL
+     IS the configuration. Enquiries land in that inbox.
+
+     ⚠ TWO THINGS TO KNOW
+
+     1. ACTIVATION. The very first submission does not arrive as an
+        enquiry — FormSubmit emails that address a confirmation link
+        instead, and nothing is delivered until someone clicks it.
+        So the first test send is the activation, and the second is
+        the real test. Do both before telling a parent to use this.
+
+     2. THIS ADDRESS IS PUBLIC. The repository is public and this file
+        ships to every visitor, so a scraper can read the address and
+        it will attract spam. FormSubmit's own fix: once activated,
+        your dashboard shows a hashed alias like
+            https://formsubmit.co/ajax/a1b2c3d4e5f6...
+        which delivers to the same inbox without naming it. Swap the
+        line below for that alias as soon as you have it.
+
+     When Bright Saplings has its own address, this is the one line
+     that changes. -------------------------------------------------- */
+  var FORM_ENDPOINT = 'https://formsubmit.co/ajax/manishm.sharma91@gmail.com';
   var PHONE = '425-428-9660';
 
   var form   = $('#tourForm');
@@ -324,7 +345,24 @@
         return;
       }
 
-      /* ---- The real thing ---------------------------------- */
+      /* ---- The real thing ----------------------------------
+         The keys below become the labels in the email, so they are
+         written the way a person reads them rather than the way the
+         form names its inputs. The underscore keys are FormSubmit's
+         own options, not form data. */
+      var payload = {
+        _subject: 'Tour request from ' + (data.parentName || 'the website'),
+        _template: 'table',
+        _captcha: 'false',
+        'Parent name':   data.parentName,
+        'Email':         data.email,
+        'Phone':         data.phone || '(not given)',
+        'Child age':     data.childAge || '(not given)',
+        'Hoping to start': data.startDate || '(not given)',
+        'Days needed':   data.days.length ? data.days.join(', ') : '(not given)',
+        'Message':       data.message || '(none)'
+      };
+
       var btn = form.querySelector('button[type="submit"]');
       var label = btn ? btn.textContent : '';
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
@@ -332,14 +370,21 @@
       fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
+        body: JSON.stringify(payload)
       })
         .then(function (r) { if (!r.ok) throw new Error('Bad response'); return r; })
         .then(function () { showSuccess(); })
         .catch(function () {
+          /* Never a dead end. If the send fails for any reason, the
+             parent still gets a way through to a person, with what
+             they typed still on the screen. */
           if (status) {
-            status.textContent = 'That did not go through. Please call or text ' + PHONE + '.';
-            status.className = 'form__status is-err';
+            status.className = 'form__status is-warn';
+            status.innerHTML =
+              '<b>That didn\'t go through.</b> Please call or text ' +
+              '<a href="tel:+1' + PHONE.replace(/\D/g, '') + '">' + PHONE + '</a>' +
+              ' and we\'ll pick it up from there.' +
+              '<a class="btn btn--sm form__sms" href="' + smsHref(data) + '">Text this to us</a>';
           }
         })
         .finally(function () { if (btn) { btn.disabled = false; btn.textContent = label; } });

@@ -26,6 +26,7 @@ node tests/a11y.js           # colour contrast
 node tests/verify.js         # broken links, missing files, JS errors
 node tests/test.js           # the nav and the contact form
 node tests/feat-test.js      # the open/closed pill and the photo lightbox
+node tests/form-test.js      # both outcomes of the contact form
 ```
 
 They read `http://localhost:8000/dist/` by default. Point them somewhere else
@@ -52,6 +53,12 @@ change.
 
 **`test.js`** — opens the mobile nav, clicks through it, and puts the contact
 form through every validation branch.
+
+**`form-test.js`** — the contact form's two submit outcomes, with every request
+to the mail endpoint intercepted so no real email is ever sent. It checks that
+on success the form clears (the message really went) and that on failure it does
+**not** clear, and offers a phone number and a prefilled text instead. A parent's
+words must never evaporate into a failed request.
 
 **`feat-test.js`** — sets the clock to six different times (mid-morning, just
 before closing, before opening, late evening, Saturday, Monday) and checks the

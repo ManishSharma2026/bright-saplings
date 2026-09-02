@@ -329,27 +329,31 @@ of `build.py`, run the build, then add the section to `front-page.php` and
 
 ## The contact form
 
-It validates in the browser but **nothing is connected to it yet.**
-
-It does not pretend otherwise. It used to say *"Thanks! Your request is in"*
-while sending the message precisely nowhere — a parent would have sat waiting
-for a reply that could never come, and Bright Saplings would never have known
-they existed. That is the worst failure this page could have, so it is now
-impossible: with no endpoint the form says so plainly, gives the phone number,
-and offers a **Text this to us** button that opens Messages with the whole
-enquiry already written.
-
-**To connect it,** put a Formspree URL in one line near the top of section 09
-in `js/script.js`:
+It posts to **FormSubmit**, delivering to `manishm.sharma91@gmail.com` while
+this is being tested. One line in section 09 of `js/script.js`:
 
 ```js
-var FORM_ENDPOINT = 'https://formspree.io/f/YOUR_ID';
+var FORM_ENDPOINT = 'https://formsubmit.co/ajax/manishm.sharma91@gmail.com';
 ```
 
-Everything else starts working by itself. `GOING-LIVE.md` step 4 has the detail.
-On WordPress, use a form plugin instead; see `wordpress/README.md`.
+**It must be activated before it delivers anything.** The first submission
+triggers a confirmation email to that inbox rather than arriving as an enquiry.
+See `GOING-LIVE.md` step 4 — and read the part about swapping in the hashed
+alias, because a public repo means that address is scrapable.
 
----
+**Why the three outcomes are all honest.** This form used to say *"Thanks! Your
+request is in"* while sending the message precisely nowhere. A parent would have
+waited for a reply that could never come, and Bright Saplings would never have
+known they existed.
+
+| Situation | What happens |
+|---|---|
+| Sends successfully | Real thank-you, form clears |
+| Send fails | Phone number + a prefilled text, **fields kept** |
+| No endpoint configured | Says so plainly, same fallbacks |
+
+The fields are only cleared when the message genuinely went somewhere. That is
+the whole rule, and `tests/form-test.js` enforces it.
 
 ## Moving to WordPress
 

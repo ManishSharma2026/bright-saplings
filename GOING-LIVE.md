@@ -91,36 +91,47 @@ If you'd rather not, send me the domain and I'll do it in a minute.
 
 ---
 
-## 4. Make the form actually send
+## 4. Activate the form (two minutes, and it is not optional)
 
-**This is the one thing that will cost you an enrolment if it's missed.**
+The form now posts to **FormSubmit**, delivering to
+`manishm.sharma91@gmail.com` for testing. No account, no dashboard: the address
+in the URL is the whole configuration.
 
-The form validates properly, but nothing is connected to it yet. It does not
-pretend otherwise: submit it and it says *"We can't receive messages through
-this form yet"*, gives the phone number, and offers a **Text this to us**
-button that opens Messages with the whole enquiry already written. Nothing a
-parent types is lost.
+**But it will not deliver anything until it is activated.**
 
-That is a safe holding position, not a finished form. Wire it up:
+1. Open the live site, fill the form in, send it.
+2. That first submission does **not** arrive as an enquiry. FormSubmit emails
+   that inbox a confirmation link instead.
+3. Click the link.
+4. Send a **second** test. That one should land properly.
 
-1. Go to `formspree.io`, sign up free, create a form, copy the form URL. It
-   looks like `https://formspree.io/f/abcdwxyz`.
-2. Open `js/script.js`, find section 09 near the top, and paste it in:
+Do all four before you tell anyone to use the form. Then check the spam folder,
+because the first real one usually goes there.
 
-   ```js
-   var FORM_ENDPOINT = 'https://formspree.io/f/abcdwxyz';
-   ```
+### Two things to change before this is Pooja's
 
-3. Run `python3 build.py`.
+**The address is public.** The repository is public and `js/script.js` ships to
+every visitor, so a scraper can read that Gmail address and it will attract
+spam. Once the form is activated, FormSubmit's dashboard gives you a hashed
+alias:
 
-That's the whole change — one line. The form starts posting for real, shows a
-proper thank-you on success, and falls back to the phone number if the request
-fails. The "not connected" message disappears by itself.
+```
+https://formsubmit.co/ajax/a1b2c3d4e5f6...
+```
 
-4. **Send yourself a test and confirm it arrives.** Then check the spam folder,
-   because the first one usually lands there.
+It delivers to the same inbox without naming it anywhere. Swap it into
+`FORM_ENDPOINT` in section 09 of `js/script.js` and rebuild.
 
-Free tier is 50 submissions a month, far more than a home daycare will see.
+**Enquiries should reach Bright Saplings, not you.** When Pooja has an address
+for the business, that same one line changes again. Everything else stays as it
+is.
+
+### If a send fails
+
+The form does not dead-end. It shows the phone number and a **Text this to us**
+button carrying the whole enquiry, and it leaves the fields filled so nothing
+the parent typed is lost. `tests/form-test.js` checks both outcomes with the
+network mocked, so no test run ever emails a real person.
 
 ---
 
