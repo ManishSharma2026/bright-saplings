@@ -51,8 +51,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
         <figure class="frame reveal" style="--rot:-2deg">
           <img class="img-real img-real--portrait" src="images/story-photo-1.jpg"
-               alt="Two young children sitting together on a rocking horse, the older girl with her arms around the younger boy"
-               width="1000" height="1410" loading="lazy" decoding="async">
+               alt="Two young children sitting together, the older girl with both arms around the younger boy"
+               width="1150" height="1560" loading="lazy" decoding="async">
           <!-- ⟨CAPTION 1⟩ Ask Pooja what she'd like this to say. Something
                plain and true works best — a place, or a year, or nothing
                more than what's happening in the picture. -->
@@ -61,8 +61,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
         <figure class="frame frame--sm reveal reveal--delay" style="--rot:2.6deg">
           <img class="img-real img-real--portrait" src="images/story-photo-2.jpg"
-               alt="A young girl in a yellow top turning to smile at the camera"
-               width="900" height="1230" loading="lazy" decoding="async">
+               alt="A young girl in a yellow t-shirt smiling at the camera"
+               width="980" height="1240" loading="lazy" decoding="async">
           <!-- ⟨CAPTION 2⟩ Same again. -->
           <figcaption>before any of it had a name</figcaption>
         </figure>

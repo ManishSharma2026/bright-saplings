@@ -48,8 +48,25 @@ const { chromium } = require('playwright');
   await p.check('input[name="days"][value="Mon"]');
   await p.click('#tourForm button[type=submit]');
   await p.waitForTimeout(300);
-  console.log('success status:', await p.textContent('#formStatus'));
-  console.log('form reset:', await p.inputValue('#parentName') === '');
+  /* While FORM_ENDPOINT is empty the form must NOT claim to have sent
+     anything. This asserts the honest behaviour, so that if someone ever
+     puts the fake "Thanks!" message back, this test fails loudly. */
+  const st = await p.evaluate(() => {
+    const s = document.getElementById('formStatus');
+    return { cls: s.className, text: s.textContent, tel: !!s.querySelector('a[href^="tel:"]'),
+             sms: !!s.querySelector('a[href^="sms:"]') };
+  });
+  const connected = await p.evaluate(() =>
+    !!(window.__FORM_ENDPOINT || document.querySelector('#tourForm')?.getAttribute('action')));
+  if (connected) {
+    console.log('endpoint configured; success status:', st.text.trim().slice(0, 60));
+    console.log('form reset:', await p.inputValue('#parentName') === '');
+  } else {
+    console.log('no endpoint — honest fallback shown:', st.cls.includes('is-warn'));
+    console.log('  does NOT claim success:', !/thanks|your request is in/i.test(st.text));
+    console.log('  offers phone:', st.tel, ' offers text:', st.sms);
+    console.log('  keeps what was typed:', await p.inputValue('#parentName') !== '');
+  }
   await p.screenshot({ path: 'form-success.png' });
 
   console.log('page errors:', JSON.stringify(errs));

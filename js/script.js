@@ -212,7 +212,21 @@
 
 
   /* ---------- 09. CONTACT FORM ----------------------------- *
-   * Frontend only right now. Nothing is sent anywhere.
+   *
+   * ⚠ THE ONE LINE THAT MATTERS
+   *
+   *      var FORM_ENDPOINT = '';
+   *
+   * While that is empty, the form does NOT pretend to have sent
+   * anything. It used to say "Thanks! Your request is in" while
+   * sending the message precisely nowhere — a parent would have sat
+   * waiting for a reply that could never come, and Bright Saplings
+   * would never have known they existed. That is the worst failure
+   * this page could have, so it is now impossible: with no endpoint
+   * the form says so plainly and hands them a way to reach a human.
+   *
+   * Put a Formspree URL in FORM_ENDPOINT and everything below starts
+   * working normally. Nothing else needs changing.
    *
    * TO MAKE IT ACTUALLY SEND, pick one:
    *
@@ -228,6 +242,12 @@
    *
    *  On WordPress, use a form plugin instead — see wordpress/README.md.
    * -------------------------------------------------------- */
+  /* Paste a Formspree (or Basin, or Getform) URL here and the form
+     starts posting for real. Leave it empty and the form is honest
+     about not being connected. */
+  var FORM_ENDPOINT = '';
+  var PHONE = '425-428-9660';
+
   var form   = $('#tourForm');
   var status = $('#formStatus');
 
@@ -294,30 +314,65 @@
         message:    form.elements.message.value.trim()
       };
 
-      /* --- C) REAL SUBMISSION would go here -------------------
-      var btn = form.querySelector('button[type="submit"]');
-      btn.disabled = true;
-      btn.textContent = 'Sending…';
+      /* ---- Nothing is connected yet -------------------------
+         Say so, and give them something that actually works. The
+         form is NOT reset: everything they typed stays on screen,
+         so the "text this to us" button can carry it and they can
+         still copy it if they'd rather. */
+      if (!FORM_ENDPOINT) {
+        showNotConnected(data);
+        return;
+      }
 
-      fetch('https://your-endpoint.example/tour-request', {
+      /* ---- The real thing ---------------------------------- */
+      var btn = form.querySelector('button[type="submit"]');
+      var label = btn ? btn.textContent : '';
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+      fetch(FORM_ENDPOINT, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
       })
-        .then(function (r) { if (!r.ok) throw new Error('Bad response'); return r.json(); })
+        .then(function (r) { if (!r.ok) throw new Error('Bad response'); return r; })
         .then(function () { showSuccess(); })
         .catch(function () {
-          status.textContent = 'Something went wrong — please call us on 425-428-9660.';
-          status.className = 'form__status is-err';
+          if (status) {
+            status.textContent = 'That did not go through. Please call or text ' + PHONE + '.';
+            status.className = 'form__status is-err';
+          }
         })
-        .finally(function () { btn.disabled = false; btn.textContent = 'Send request'; });
-      return;
-      -------------------------------------------------------- */
-
-      // --- SIMULATED SUCCESS (remove once a backend is wired up) ---
-      console.log('Tour request (not sent anywhere yet):', data);
-      showSuccess();
+        .finally(function () { if (btn) { btn.disabled = false; btn.textContent = label; } });
     });
+
+    /* Builds a text message out of what they typed, so a tap on a
+       phone opens Messages with the whole enquiry already written. */
+    function smsHref(d) {
+      var lines = [
+        'Hi Bright Saplings, I would like to book a tour.',
+        '',
+        'Name: ' + (d.parentName || ''),
+        'Email: ' + (d.email || '')
+      ];
+      if (d.phone)      lines.push('Phone: ' + d.phone);
+      if (d.childAge)   lines.push('Child age: ' + d.childAge);
+      if (d.startDate)  lines.push('Hoping to start: ' + d.startDate);
+      if (d.message)    lines.push('', d.message);
+      /* RFC 5724 says "?body=". iOS has historically also accepted
+         "&body=", but "?" is the one that works on both Android and
+         current iOS, so that is what we use. */
+      return 'sms:+1' + PHONE.replace(/\D/g, '') + '?body=' + encodeURIComponent(lines.join('\n'));
+    }
+
+    function showNotConnected(d) {
+      if (!status) return;
+      status.className = 'form__status is-warn';
+      status.innerHTML =
+        '<b>We can\'t receive messages through this form yet.</b> ' +
+        'Please call or text <a href="tel:+1' + PHONE.replace(/\D/g, '') + '">' + PHONE + '</a> ' +
+        'and we\'ll answer today. Nothing you typed has been lost.' +
+        '<a class="btn btn--sm form__sms" href="' + smsHref(d) + '">Text this to us</a>';
+    }
 
     function showSuccess() {
       if (status) {

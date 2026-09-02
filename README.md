@@ -329,11 +329,25 @@ of `build.py`, run the build, then add the section to `front-page.php` and
 
 ## The contact form
 
-It validates in the browser and shows a success message, but **it does not send
-anything yet.** Wiring it up takes about two minutes — the comment block at the
-top of section 09 in `js/script.js` lists three options (Formspree is the
-no-code one). On WordPress, use a form plugin instead; see
-`wordpress/README.md`.
+It validates in the browser but **nothing is connected to it yet.**
+
+It does not pretend otherwise. It used to say *"Thanks! Your request is in"*
+while sending the message precisely nowhere — a parent would have sat waiting
+for a reply that could never come, and Bright Saplings would never have known
+they existed. That is the worst failure this page could have, so it is now
+impossible: with no endpoint the form says so plainly, gives the phone number,
+and offers a **Text this to us** button that opens Messages with the whole
+enquiry already written.
+
+**To connect it,** put a Formspree URL in one line near the top of section 09
+in `js/script.js`:
+
+```js
+var FORM_ENDPOINT = 'https://formspree.io/f/YOUR_ID';
+```
+
+Everything else starts working by itself. `GOING-LIVE.md` step 4 has the detail.
+On WordPress, use a form plugin instead; see `wordpress/README.md`.
 
 ---
 

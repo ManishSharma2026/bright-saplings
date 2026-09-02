@@ -1760,6 +1760,37 @@ code {
 @media (min-width: 900px) { .contact { grid-template-columns: 1fr 1fr; gap: var(--s-8); align-items: start } }
 @media (min-width: 1080px) { .form { padding: 38px 36px } }
 
+/* The form is not connected to anything yet, and says so rather than
+   claiming a message was sent. This is the styling for that state:
+   amber, not red — nothing has gone wrong, the parent just needs a
+   different route to a human. */
+.form__status.is-warn {
+  display: block;
+  padding: var(--s-4);
+  background: rgba(242, 173, 107, .2);
+  border: 2px solid var(--green-deep);
+  border-radius: var(--r-md);
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.form__status.is-warn b { color: var(--ink) }
+.form__status.is-warn a:not(.btn) {
+  font-weight: 700; color: var(--ink);
+  background-image: linear-gradient(var(--tang), var(--tang));
+  background-repeat: no-repeat;
+  background-size: 100% .09em;
+  background-position: 0 calc(100% - .06em);
+  padding-bottom: .12em;
+}
+.form__sms {
+  /* display: flex, not inline-flex. Inline-flex left the button sitting
+     inside the last line of the sentence, overlapping the words. */
+  display: flex;
+  width: max-content;
+  max-width: 100%;
+  margin-top: var(--s-4);
+}
+
 /* >>> src/css/sections/footer.css */
 /* ==========================================================
    SECTION: FOOTER — deep bark ground

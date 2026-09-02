@@ -93,32 +93,34 @@ If you'd rather not, send me the domain and I'll do it in a minute.
 
 ## 4. Make the form actually send
 
-**This is the one thing that will cost you an enrolment if it's missed.** The
-form currently validates and says thank you, but sends nothing.
+**This is the one thing that will cost you an enrolment if it's missed.**
 
-The two-minute fix, no account needed beyond an email confirmation:
+The form validates properly, but nothing is connected to it yet. It does not
+pretend otherwise: submit it and it says *"We can't receive messages through
+this form yet"*, gives the phone number, and offers a **Text this to us**
+button that opens Messages with the whole enquiry already written. Nothing a
+parent types is lost.
 
-1. Go to `formspree.io`, sign up free, create a form, copy your form ID
-2. In `src/sections/09-contact.html`, change:
+That is a safe holding position, not a finished form. Wire it up:
 
-   ```html
-   <form class="form" id="tourForm" novalidate>
+1. Go to `formspree.io`, sign up free, create a form, copy the form URL. It
+   looks like `https://formspree.io/f/abcdwxyz`.
+2. Open `js/script.js`, find section 09 near the top, and paste it in:
+
+   ```js
+   var FORM_ENDPOINT = 'https://formspree.io/f/abcdwxyz';
    ```
 
-   to:
+3. Run `python3 build.py`.
 
-   ```html
-   <form class="form" id="tourForm" novalidate
-         action="https://formspree.io/f/YOUR_ID" method="POST">
-   ```
+That's the whole change — one line. The form starts posting for real, shows a
+proper thank-you on success, and falls back to the phone number if the request
+fails. The "not connected" message disappears by itself.
 
-3. In `js/script.js`, delete the submit handler in section 09 (it's clearly
-   marked) so the browser posts the form normally
-4. Run `python3 build.py`
-5. **Send yourself a test and confirm it arrives.** Then check the spam folder,
+4. **Send yourself a test and confirm it arrives.** Then check the spam folder,
    because the first one usually lands there.
 
-Free tier is 50 submissions a month — far more than a home daycare will see.
+Free tier is 50 submissions a month, far more than a home daycare will see.
 
 ---
 
