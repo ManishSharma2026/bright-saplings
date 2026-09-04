@@ -98,17 +98,15 @@
   <div class="wrap header__inner">
 
     <a class="brand" href="#top" aria-label="Bright Saplings Daycare, back to top">
-      <!-- The illustration cropped out of the real logo file — the sun, the
-           tree, both children — with its olive ring redrawn at this size.
-           Nothing here is a stand-in: it is Pooja's artwork.
-
-           The full badge doesn't work at 48px because the wordmark inside it
-           becomes unreadable, and the wordmark is already sitting right next
-           to this in real text. So the mark carries the picture and the text
-           carries the name. images/logo.png (the whole badge) is used where
-           it gets real size: the footer, the 404 page and the share card. -->
-      <img class="brand__logo" src="images/logo-mark.png" alt=""
-           width="256" height="256" fetchpriority="high">
+      <!-- THE FULL BADGE. Not a crop of it.
+           I twice argued for using only the illustration here, on the grounds
+           that the badge's own wordmark is unreadable at header size. That
+           was answering a question nobody asked: the client wants their
+           logo on their site, whole. It is 64px and the wordmark inside it
+           is small — that is what a logo looks like in a header, and the
+           name is set in real type right beside it anyway. -->
+      <img class="brand__logo" src="images/logo.png" alt=""
+           width="560" height="560" fetchpriority="high">
       <span class="brand__text">Bright Saplings<span class="brand__sub">Daycare</span></span>
     </a>
 
@@ -195,12 +193,15 @@
       </div>
 
       <figure class="frame">
-        <!-- IMAGE: images/hero.jpg (1600x1300) -->
-        <div class="img-ph img-ph--hero" aria-hidden="true">
-          <span class="img-ph__label">Hero photo</span>
-          <span class="img-ph__hint">images/hero.jpg &middot; 1600&times;1300</span>
-        </div>
-        <figcaption>a morning at Bright Saplings</figcaption>
+        <img class="img-real img-real--hero" src="images/hero.jpg"
+             alt="A baby sitting on a play mat in the playroom, clapping and laughing, surrounded by toys"
+             width="1100" height="907" fetchpriority="high" decoding="async">
+        <!-- ⟨CAPTION⟩ Deliberately does not name a place. I don't know that
+             this was taken in the Bothell house, and a caption claiming it
+             was would be a small lie in a very visible spot. If it WAS
+             taken there, "a morning at Bright Saplings" is better — say
+             the word and I'll change it back. -->
+        <figcaption>a very good morning</figcaption>
       </figure>
     </div>
 
@@ -230,12 +231,11 @@
 
     <div class="about__media reveal">
       <figure class="frame">
-        <!-- IMAGE: images/about.jpg (1200x1400) -->
-        <div class="img-ph img-ph--portrait" aria-hidden="true">
-          <span class="img-ph__label">About photo</span>
-          <span class="img-ph__hint">images/about.jpg &middot; 1200&times;1400</span>
-        </div>
-        <figcaption>our front room, mid-morning</figcaption>
+        <img class="img-real img-real--portrait" src="images/about.jpg"
+             alt="A toddler turning the pages of a picture book on the play mat"
+             width="950" height="1108" loading="lazy" decoding="async">
+        <!-- ⟨CAPTION⟩ Same reasoning as the hero: no place claimed. -->
+        <figcaption>somewhere in the middle of a story</figcaption>
       </figure>
       <div class="about__badge">
         <span class="num">8&ndash;6</span>
@@ -356,7 +356,7 @@
         <figure class="frame reveal" style="--rot:-2deg">
           <img class="img-real img-real--portrait" src="images/story-photo-1.jpg"
                alt="Two young children sitting together, the older girl with both arms around the younger boy"
-               width="1150" height="1560" loading="lazy" decoding="async">
+               width="900" height="1221" loading="lazy" decoding="async">
           <!-- ⟨CAPTION 1⟩ Ask Pooja what she'd like this to say. Something
                plain and true works best — a place, or a year, or nothing
                more than what's happening in the picture. -->
@@ -366,7 +366,7 @@
         <figure class="frame frame--sm reveal reveal--delay" style="--rot:2.6deg">
           <img class="img-real img-real--portrait" src="images/story-photo-2.jpg"
                alt="A young girl in a yellow t-shirt smiling at the camera"
-               width="980" height="1240" loading="lazy" decoding="async">
+               width="760" height="962" loading="lazy" decoding="async">
           <!-- ⟨CAPTION 2⟩ Same again. -->
           <figcaption>before any of it had a name</figcaption>
         </figure>
@@ -501,11 +501,9 @@
 
       <article class="card card--program" data-tilt>
         <div class="card__media">
-          <!-- IMAGE: images/program-toddler.jpg (900x560) -->
-          <div class="img-ph img-ph--wide" aria-hidden="true">
-            <span class="img-ph__label">Toddlers photo</span>
-            <span class="img-ph__hint">images/program-toddler.jpg</span>
-          </div>
+          <img class="img-real img-real--wide" src="images/program-toddler.jpg"
+               alt="A toddler in an orange t-shirt playing with a stacking ring toy"
+               width="820" height="512" loading="lazy" decoding="async">
         </div>
         <div class="card__body">
           <span class="tag">18 months to 3 years</span>
@@ -526,7 +524,7 @@
           <!-- IMAGE: images/program-preschool.jpg (900x560) -->
           <div class="img-ph img-ph--wide" aria-hidden="true">
             <span class="img-ph__label">Preschool photo</span>
-            <span class="img-ph__hint">images/program-preschool.jpg</span>
+            <span class="img-ph__hint">needs a photo of a 3&ndash;5 year old</span>
           </div>
         </div>
         <div class="card__body">

@@ -29,11 +29,9 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
       <article class="card card--program" data-tilt>
         <div class="card__media">
-          <!-- IMAGE: images/program-toddler.jpg (900x560) -->
-          <div class="img-ph img-ph--wide" aria-hidden="true">
-            <span class="img-ph__label">Toddlers photo</span>
-            <span class="img-ph__hint">images/program-toddler.jpg</span>
-          </div>
+          <img class="img-real img-real--wide" src="images/program-toddler.jpg"
+               alt="A toddler in an orange t-shirt playing with a stacking ring toy"
+               width="820" height="512" loading="lazy" decoding="async">
         </div>
         <div class="card__body">
           <span class="tag">18 months to 3 years</span>
@@ -54,7 +52,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
           <!-- IMAGE: images/program-preschool.jpg (900x560) -->
           <div class="img-ph img-ph--wide" aria-hidden="true">
             <span class="img-ph__label">Preschool photo</span>
-            <span class="img-ph__hint">images/program-preschool.jpg</span>
+            <span class="img-ph__hint">needs a photo of a 3&ndash;5 year old</span>
           </div>
         </div>
         <div class="card__body">

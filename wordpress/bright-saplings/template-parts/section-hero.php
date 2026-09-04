@@ -67,12 +67,15 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
       </div>
 
       <figure class="frame">
-        <!-- IMAGE: images/hero.jpg (1600x1300) -->
-        <div class="img-ph img-ph--hero" aria-hidden="true">
-          <span class="img-ph__label">Hero photo</span>
-          <span class="img-ph__hint">images/hero.jpg &middot; 1600&times;1300</span>
-        </div>
-        <figcaption>a morning at Bright Saplings</figcaption>
+        <img class="img-real img-real--hero" src="images/hero.jpg"
+             alt="A baby sitting on a play mat in the playroom, clapping and laughing, surrounded by toys"
+             width="1100" height="907" fetchpriority="high" decoding="async">
+        <!-- ⟨CAPTION⟩ Deliberately does not name a place. I don't know that
+             this was taken in the Bothell house, and a caption claiming it
+             was would be a small lie in a very visible spot. If it WAS
+             taken there, "a morning at Bright Saplings" is better — say
+             the word and I'll change it back. -->
+        <figcaption>a very good morning</figcaption>
       </figure>
     </div>
 

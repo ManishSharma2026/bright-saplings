@@ -824,16 +824,23 @@ code {
 /* No border here: the logo already draws its own olive ring, and a
    second one around it reads as a mistake. */
 .brand__logo {
-  width: 52px; height: 52px; flex: 0 0 52px;
+  /* 64px, because this is now the whole badge rather than a crop of its
+     middle, and the badge needs the extra room to read as itself. The
+     header bar is 70px on mobile and 78px above 860px, so it fits with
+     air either side. */
+  width: 64px; height: 64px; flex: 0 0 64px;
   /* NO border-radius. The PNG is already a transparent disc with its
-     olive ring drawn right at the edge, so a 50% radius clipped a
-     hairline off that ring all the way round — which is what read as
-     the logo being "cut off" in the corner. Nothing to clip here. */
+     olive ring drawn right at the edge, so a 50% radius shaved a
+     hairline off that ring all the way round — which is exactly what
+     read as the logo being "cut off". Nothing here needs clipping. */
   object-fit: contain;
-  /* A hair of room so the ring never touches the header's bottom
-     border when the bar shrinks on scroll. */
   padding: 1px;
   transition: transform var(--med);
+}
+@media (max-width: 400px) {
+  /* On a 320-390px screen the badge plus the wordmark plus the menu
+     button is too much. The badge gives up 8px rather than the name. */
+  .brand__logo { width: 56px; height: 56px; flex: 0 0 56px }
 }
 .brand:hover .brand__logo { transform: rotate(-5deg) scale(1.06); }
 
